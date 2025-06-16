@@ -99,12 +99,12 @@ class AgentOrchestrator:
         return True
 
     def _is_market_intelligence(self, announcement: dict) -> bool:
-        """Return True if the announcement is likely market intelligence, False if it's a legal/privacy/cookie/about/careers/etc page."""
+        """Return True if the announcement is likely market intelligence, False if it's a legal/privacy/cookie/about/careers/etc page or pricing/plans/etc."""
         if not isinstance(announcement, dict):
             return False
         title = (announcement.get('title') or '').lower()
         url = (announcement.get('url') or '').lower()
-        # Add more keywords as needed
+        # Expanded skip keywords
         skip_keywords = [
             'privacy', 'cookie', 'legal', 'terms', 'about', 'careers', 'jobs', 'esg', 'who we are', 'overview',
             'policy', 'compliance', 'support', 'contact', 'faq', 'help', 'modern slavery', 'gdpr', 'accessibility',
@@ -120,7 +120,17 @@ class AgentOrchestrator:
             'blog/governance', 'blog/sustainability', 'blog/diversity', 'blog/inclusion', 'blog/trust', 'blog/security',
             'blog/responsibility', 'blog/ethics', 'blog/transparency', 'blog/csr', 'blog/csr-report', 'blog/community',
             'blog/donate', 'blog/donation', 'blog/foundation', 'blog/philanthropy', 'blog/volunteer', 'blog/events',
-            'blog/event', 'blog/webinar', 'blog/training', 'blog/academy', 'blog/university', 'blog/learning', 'blog/education'
+            'blog/event', 'blog/webinar', 'blog/training', 'blog/academy', 'blog/university', 'blog/learning', 'blog/education',
+            # New skip keywords for pricing/plans/etc
+            'pricing', 'plans', 'plan', 'subscription', 'buy', 'purchase', 'quote', 'trial', 'demo', 'free', 'contact sales',
+            'get started', 'start now', 'request', 'register', 'signup', 'sign up', 'sign-up', 'login', 'log in', 'log-in',
+            'download', 'install', 'upgrade', 'renew', 'billing', 'invoice', 'order', 'cart', 'checkout', 'shop', 'store',
+            'marketplace', 'reseller', 'distributor', 'partner program', 'partner portal', 'affiliate', 'referral', 'pricing-table',
+            'compare plans', 'compare', 'cost', 'fee', 'payment', 'pay', 'money', 'refund', 'warranty', 'guarantee', 'discount',
+            'offer', 'promotion', 'promo', 'deal', 'coupon', 'special', 'limited time', 'exclusive', 'save', 'bargain', 'clearance',
+            'sale', 'bundle', 'package', 'starter', 'enterprise', 'business', 'personal', 'pro', 'premium', 'basic', 'plus', 'advanced',
+            'ultimate', 'essentials', 'trial', 'evaluation', 'demo', 'sandbox', 'beta', 'preview', 'early access', 'waitlist', 'invite',
+            'access', 'availability', 'release notes', 'roadmap', 'future', 'coming soon', 'soon', 'not available', 'unavailable', 'out of stock'
         ]
         for kw in skip_keywords:
             if kw in title or kw in url:
@@ -268,8 +278,10 @@ class AgentOrchestrator:
         if os.path.exists(summaries_root):
             shutil.rmtree(summaries_root)
         os.makedirs(summaries_root, exist_ok=True)
-        # ... rest of run logic ...
+        # Exclude ThoughtSpot from processing
         for company in self.scraper.watchlist['companies']:
+            if company.strip().lower() == 'thoughtspot':
+                continue
             self.process_company(company)
         # After processing, keep only top 3 summaries per company
         self._keep_top_summaries(max_per_company=3)
