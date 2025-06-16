@@ -215,7 +215,7 @@ class AnnouncementAnalyzer:
                 summary = 'No specific features identified.'
             else:
                 summary = self._generate_summary(text, features)
-            # Build analysis result (without social media or sentiment)
+            # Build analysis result (without social media metrics)
             result = {
                 'title': title,
                 'date': date,

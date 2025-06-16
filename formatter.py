@@ -71,56 +71,6 @@ class SummaryFormatter:
             logger.error(f"Error formatting summary: {str(e)}")
             return {'formatted': 'Error formatting summary.'}
 
-    def _format_sentiment(self, sentiment: Dict[str, float]) -> str:
-        """Format sentiment analysis results."""
-        try:
-            # Convert to percentages
-            positive = sentiment['positive'] * 100
-            negative = sentiment['negative'] * 100
-            neutral = sentiment['neutral'] * 100
-            
-            return f"""- Positive: {positive:.1f}%
-- Negative: {negative:.1f}%
-- Neutral: {neutral:.1f}%"""
-        except Exception as e:
-            logger.error(f"Error formatting sentiment: {str(e)}")
-            return "Error analyzing sentiment"
-
-    def _format_social_analysis(self, social: Dict[str, Any]) -> str:
-        """Format social media analysis results."""
-        try:
-            # Format platform breakdown
-            platform_str = "\n".join([
-                f"- {platform}: {count} mentions"
-                for platform, count in social['platform_breakdown'].items()
-            ])
-            
-            # Format sentiment breakdown
-            sentiment_str = "\n".join([
-                f"- {sentiment.capitalize()}: {count} mentions"
-                for sentiment, count in social['sentiment_breakdown'].items()
-            ])
-            
-            # Format top mentions
-            mentions_str = "\n".join([
-                f"- [{mention['platform']}] {mention['content'][:100]}... ({mention['date'].strftime('%Y-%m-%d')})"
-                for mention in social['top_mentions']
-            ])
-            
-            return f"""### Total Mentions: {social['total_mentions']}
-
-#### Platform Breakdown
-{platform_str}
-
-#### Sentiment Distribution
-{sentiment_str}
-
-#### Top Mentions
-{mentions_str}"""
-        except Exception as e:
-            logger.error(f"Error formatting social analysis: {str(e)}")
-            return "Error analyzing social media data"
-
     def _format_features(self, features: list) -> str:
         """Format feature list."""
         try:
