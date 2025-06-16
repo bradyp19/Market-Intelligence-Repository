@@ -1,3 +1,5 @@
+![Market Intelligence Logo](assets/logo.png)
+
 # Market Intelligence Agent
 
 A Python-based tool that automatically collects, analyzes, and summarizes product announcements from major tech and data companies.
@@ -15,6 +17,10 @@ A Python-based tool that automatically collects, analyzes, and summarizes produc
 - Snowflake
 - Databricks
 - Domo
+- Tableau
+- PowerBI
+- Denodo
+- Starburst
 
 ## Setup
 
