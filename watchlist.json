@@ -1,0 +1,67 @@
+{
+    "companies": {
+        "Snowflake": {
+            "blog_url": "https://www.snowflake.com/blog/",
+            "press_url": "https://www.snowflake.com/news-events/press-releases/",
+            "keywords": ["data cloud", "data warehouse", "data lake", "data sharing"]
+        },
+        "Databricks": {
+            "blog_url": "https://www.databricks.com/blog",
+            "press_url": "https://www.databricks.com/company/newsroom",
+            "keywords": ["lakehouse", "data lake", "spark", "delta lake"]
+        },
+        "Domo": {
+            "blog_url": "https://www.domo.com/blog",
+            "press_url": "https://www.domo.com/company/press-releases",
+            "keywords": ["business intelligence", "dashboard", "analytics"]
+        },
+        "Tableau": {
+            "blog_url": "https://www.tableau.com/blog",
+            "press_url": "https://www.tableau.com/about/press-releases",
+            "keywords": ["visualization", "analytics", "dashboard"]
+        },
+        "Power BI": {
+            "blog_url": "https://powerbi.microsoft.com/en-us/blog/",
+            "press_url": "https://news.microsoft.com/tag/power-bi/",
+            "keywords": ["business intelligence", "analytics", "reporting"]
+        },
+        "Starburst": {
+            "blog_url": "https://www.starburst.io/blog/",
+            "press_url": "https://www.starburst.io/press-releases/",
+            "keywords": ["data lake", "presto", "query engine"]
+        },
+        "Denodo": {
+            "blog_url": "https://www.denodo.com/en/blog",
+            "press_url": "https://www.denodo.com/en/press-releases",
+            "keywords": ["data virtualization", "data integration"]
+        },
+        "ThoughtSpot": {
+            "blog_url": "https://www.thoughtspot.com/blog",
+            "press_url": "https://www.thoughtspot.com/company/press-releases",
+            "keywords": ["search analytics", "natural language", "ai analytics"]
+        }
+    },
+    "global_keywords": [
+        "announcement",
+        "launch",
+        "release",
+        "new feature",
+        "product update",
+        "enhancement",
+        "capability",
+        "integration",
+        "partnership",
+        "acquisition"
+    ],
+    "excluded_keywords": [
+        "job",
+        "career",
+        "hiring",
+        "recruitment",
+        "webinar",
+        "event",
+        "conference",
+        "training",
+        "certification"
+    ]
+} 

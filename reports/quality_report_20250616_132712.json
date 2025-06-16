@@ -1,0 +1,1243 @@
+{
+  "metrics": {
+    "scraping_metrics": [
+      {
+        "company": "Databricks",
+        "status": "success",
+        "count": 40
+      },
+      {
+        "company": "Denodo",
+        "status": "success",
+        "count": 5
+      },
+      {
+        "company": "Domo",
+        "status": "success",
+        "count": 66
+      },
+      {
+        "company": "Power BI",
+        "status": "success",
+        "count": 10
+      },
+      {
+        "company": "Snowflake",
+        "status": "success",
+        "count": 44
+      },
+      {
+        "company": "Starburst",
+        "status": "success",
+        "count": 5
+      },
+      {
+        "company": "Tableau",
+        "status": "success",
+        "count": 10
+      },
+      {
+        "company": "ThoughtSpot",
+        "status": "success",
+        "count": 5
+      }
+    ],
+    "summary_metrics": [
+      {
+        "company": "Databricks",
+        "avg_confidence": 0.0,
+        "total": 40
+      },
+      {
+        "company": "Denodo",
+        "avg_confidence": 0.0,
+        "total": 5
+      },
+      {
+        "company": "Domo",
+        "avg_confidence": 0.0,
+        "total": 66
+      },
+      {
+        "company": "Power BI",
+        "avg_confidence": 0.0,
+        "total": 10
+      },
+      {
+        "company": "Snowflake",
+        "avg_confidence": 0.0,
+        "total": 44
+      },
+      {
+        "company": "Starburst",
+        "avg_confidence": 0.0,
+        "total": 5
+      },
+      {
+        "company": "Tableau",
+        "avg_confidence": 0.0,
+        "total": 10
+      },
+      {
+        "company": "ThoughtSpot",
+        "avg_confidence": 0.0,
+        "total": 5
+      }
+    ],
+    "coverage_metrics": [
+      {
+        "company": "Databricks",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 100.0
+      },
+      {
+        "company": "Denodo",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 100.0
+      },
+      {
+        "company": "Domo",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 100.0
+      },
+      {
+        "company": "Power BI",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 100.0
+      },
+      {
+        "company": "Snowflake",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 100.0
+      },
+      {
+        "company": "Starburst",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 100.0
+      },
+      {
+        "company": "Tableau",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 100.0
+      },
+      {
+        "company": "ThoughtSpot",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 100.0
+      }
+    ]
+  },
+  "low_confidence_summaries": [
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/apache-iceberg-v3-table-spec-oss-shared-success",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/company/overview/esg",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/postgres-powering-enterprise-ai",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/agentic-ai-ready-enterprise-data",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/dataaisummit",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/introducing-lakebridge-free-open-data-migration-databricks-sql",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/announcing-general-availability-databricks-lakeflow",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/labels-loyalty-how-kard-using-databricks-ai-functions-power-personalized-rewards",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/real-time-open-lakehouse-redpanda-and-databricks",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/ai-workflows-our-data-team-built-and-yours-can-too",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/domo-for-good",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/business-intelligence/reporting-and-analytics",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/partners/snowflake",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/partners/netsuite",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Tableau",
+      "url": "https://www.tableau.com/products/tableau",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Tableau",
+      "url": "https://www.tableau.com/blog/datafam-roundup-june-9-13-2025",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Tableau",
+      "url": "https://www.tableau.com/blog/tableau-next",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Tableau",
+      "url": "https://www.tableau.com/es-es/blog",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Tableau",
+      "url": "https://www.tableau.com/products/public/download",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/2024/01",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/developers/automation",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/2015/01",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/2018/02",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/2019/10",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Starburst",
+      "url": "https://www.starburst.io/blog/introducing-new-data-observability-features-in-starburst-galaxy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Starburst",
+      "url": "https://www.starburst.io/blog/announcing-the-public-preview-of-data-products-in-starburst-galaxy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Starburst",
+      "url": "https://www.starburst.io/blog/dell-data-lakehouse-powered-by-starburst",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Starburst",
+      "url": "https://www.starburst.io/blog/ai-starburst-enterprise",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Starburst",
+      "url": "https://www.starburst.io/blog/starburst-enterprise-426-e-sts-release",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Denodo",
+      "url": "https://www.denodo.com/en/partners/systems-integrators",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Denodo",
+      "url": "https://www.denodo.com/en/data-management/data-virtualization",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Denodo",
+      "url": "https://www.denodo.com/en/denodo-platform/denodo-agora",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Denodo",
+      "url": "https://www.denodo.com/en/partners",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Denodo",
+      "url": "https://www.denodo.com/en/about-us/who-we-are",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "ThoughtSpot",
+      "url": "https://www.thoughtspot.com/tableau-alternative",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "ThoughtSpot",
+      "url": "https://www.thoughtspot.com/partners",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "ThoughtSpot",
+      "url": "https://www.thoughtspot.com/privacy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "ThoughtSpot",
+      "url": "https://www.thoughtspot.com/new-features",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "ThoughtSpot",
+      "url": "https://www.thoughtspot.com/pricing",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:24:11.444746"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/cannes-lions-2025-media-ai",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/support/priority-support",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/apache-iceberg-v3-table-spec-oss-shared-success",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/privacy-policy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/product/features/notebooks",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://docs.databricks.com/en/index.html",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/announcing-lakebase-public-preview",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/whats-new-data-sharing-and-collaboration-summer-2025",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/databricks-sql-accelerates-customer-workloads-5x-just-three-years",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/announcing-general-availability-databricks-apps",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/business-intelligence/visualizations-and-dashboards",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Domo",
+      "url": "https://community-forums.domo.com/main",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/how-5-teams-scored-big-wins-with-a-fraction-of-domo",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/business-intelligence/reporting-and-analytics",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/what-the-domo-total-cost-of-ownership-tco-means-for-your-data-stack",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Tableau",
+      "url": "https://www.tableau.com/partners",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Tableau",
+      "url": "https://www.tableau.com/pt-br/blog",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Tableau",
+      "url": "https://www.tableau.com/blog/it",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Tableau",
+      "url": "https://www.salesforce.com/company/privacy/full_privacy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Tableau",
+      "url": "https://www.tableau.com/th-th/blog",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/2018/11",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/category/semantic-model",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/category/dax",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/2021/12",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/deep-dive-into-selection-expressions-for-calculation-groups",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:20:12.405682"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/ending-data-disparity-global-inequality",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/legal/privacy/privacy-policy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/privacy-policy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/simplified-data-architecture-security",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/ai-sql-query-language",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/summit-partner-awards",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/startup-challenge-2025-winner",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/support/priority-support",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/announcements-snowflake-summit-2025",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/authors/baris-gultekin",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/company/overview/esg",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/product/applications-and-collaboration",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/postgres-powering-enterprise-ai",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/openflow-revolutionizes-data-movement-ai",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/sema4-ai-agentic-ai-snowflake-investment",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/support",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/authors/jeff-hollan",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/product/features/openflow",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/platform-announcements-summit-2025",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/why-snowflake/partners",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://quickstarts.snowflake.com/",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/company/overview/snowflake-ventures",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/agentic-ai-ready-enterprise-data",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/product/features/notebooks",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/cannes-lions-2025-media-ai",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://cookiepedia.co.uk/giving-consent-to-cookies",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/authors/arun-agarwal",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog/apache-iceberg-v3-table-spec-oss-shared-success",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/legal/snowflake-site-terms",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/legal/privacy/privacy-policy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/company/overview/snowflake-ventures",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://www.snowflake.com/en/blog",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Snowflake",
+      "url": "https://cookiepedia.co.uk/giving-consent-to-cookies",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/dataaisummit/worldtour",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/whats-new-data-sharing-and-collaboration-summer-2025",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/announcing-full-apache-iceberg-support-databricks",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/what-is-a-lakebase",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/dataaisummit",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/introducing-lakebridge-free-open-data-migration-databricks-sql",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/announcing-general-availability-databricks-lakeflow",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/announcing-lakebase-public-preview",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/introducing-agent-bricks",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.linkedin.com/company/databricks",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/whats-new-databricks-unity-catalog-data-ai-summit-2025",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/announcing-general-availability-databricks-apps",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/labels-loyalty-how-kard-using-databricks-ai-functions-power-personalized-rewards",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/databricks-sql-accelerates-customer-workloads-5x-just-three-years",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/aibi-genie-now-generally-available",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://docs.databricks.com/en/index.html",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/bringing-declarative-pipelines-apache-spark-open-source-project",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/announcing-databricks-asset-bundles-now-workspace",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/real-time-open-lakehouse-redpanda-and-databricks",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/mlflow-30-unified-ai-experimentation-observability-and-governance",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/databricks-sigmod-2025",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-unveils-databricks-one-new-experience-bring-data-and-ai",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/dataaisummit/worldtour",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/dataaisummit",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-and-microsoft-extend-strategic-partnership-azure",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.linkedin.com/company/databricks",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-announces-strategic-ai-partnership-google-cloud-bring",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://docs.databricks.com/en/index.html",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-and-synapxe-join-forces-accelerate-data-and-ai-enabled",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-unveils-lakeflow-designer-data-analysts-build-reliable",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/company/cookies",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/partners/netsuite",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/partners/overview",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/how-5-teams-scored-big-wins-with-a-fraction-of-domo",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/ai-workflows-our-data-team-built-and-yours-can-too",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/data-storytelling-best-practices-from-dashboards-to-impact",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/partners/snowflake",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/industries/retail",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/business-intelligence/reporting-and-analytics",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/company/privacy-policy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/you-built-the-pipeline-now-what-what-analysts-really-need-from-data-engineers",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/domopalooza",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/partners/databricks",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://community-forums.domo.com/main",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/what-is-a-data-product-a-guide-to-cost-value-and-strategy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/product/new-features",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/how-to-save-time-in-data-preparation",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/learn",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/scalable-data-product-design-in-domo",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/understanding-domo-roi-how-data-products-pay-off",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/domo-for-good",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/business-intelligence/visualizations-and-dashboards",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/embedded-analytics",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/company/modern-slavery-statement",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/how-to-build-an-ai-agent",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/what-the-domo-total-cost-of-ownership-tco-means-for-your-data-stack",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/blog/10-quick-wins-with-data-you-can-tackle-today",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/domo-central",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/customers/nba",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/company/cookies",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/partners/netsuite",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/partners/overview",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news/press/domo-to-present-at-2025-data-ai-summit-on-driving-real-roi-with-ai-and-data-products",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/partners/snowflake",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/industries/retail",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/business-intelligence/reporting-and-analytics",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/company/privacy-policy",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news/press/domo-announces-first-quarter-fiscal-2026-financial-results",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/domopalooza",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/partners/databricks",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://community-forums.domo.com/main",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news/press/domo-named-a-leader-in-the-2025-nucleus-research-analytics-technology-value-matrix",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/product/new-features",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news/press/kaufman-rossin-unifies-data-and-boosts-productivity-with-domo",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/learn",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news/press/domo-named-to-the-2025-paritylist-a-parity-org-program-recognizing-the-best-companies-for-equal-advancement-opportunity",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/domo-for-good",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/business-intelligence/visualizations-and-dashboards",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/embedded-analytics",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/company/modern-slavery-statement",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news/press/domo-to-participate-in-the-d-a-davidson-technology-summit",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/domo-central",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news/press/domo-ranked-1-vendor-in-dresner-advisory-services-2025-collective-insights-report",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/customers/nba",
+      "confidence_score": 0.0,
+      "timestamp": "2025-06-16 13:16:34.836913"
+    }
+  ],
+  "timestamp": "2025-06-16T13:27:12.639343"
+}

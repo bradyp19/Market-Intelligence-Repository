@@ -1,0 +1,7 @@
+Starburst Galaxy April 2023 roundup: A new and improved security & governance experience (, 2025-06-16)
+Source: https://www.starburst.io/blog/galaxy-roundup-april-2023
+Summary: Starburst Galaxy’s mission is to deliver high-quality insights without the overhead. This applies to the entire data management lifecycle – including discovering, organizing, governing, sharing, and analyzing data. Today’s release showcases how the team at Starburst is constantly striving to make security and governance as seamless as possible for data teams.
+Key Features:
+• . A little glimpse down the road(map) We aren’t done yet! Keep an eye out for the following security and governance features that we hope to see coming soon: Row-Level Filtering – Apply row-level filtering to your ABAC and RBAC policies, enabling the most granular level of access control – Apply row-level filtering to your ABAC and RBAC policies, enabling the most granular level of access control SSO for Tableau and PowerBI – Enable SSO for users leveraging Tableau and PowerBI with Starburst Galaxy – Enable SSO for users leveraging Tableau and PowerBI with Starburst Galaxy Security APIs – Programmatically manage your Galaxy security policies via APIs If you’re ready to try out these new features in Starburst Galaxy, getting started is easy
+• . No third-party integration required
+Executive Insight: This announcement highlights new capabilities or strategic direction relevant to customers or the business.

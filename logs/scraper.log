@@ -1,0 +1,78 @@
+2025-06-16 12:57:07,145 - INFO - Starting to scrape announcements...
+2025-06-16 12:57:07,147 - INFO - Scraping announcements for Snowflake
+2025-06-16 12:57:29,698 - INFO - Skipping article from None: https://www.snowflake.com/en/product/features/native-apps/
+2025-06-16 12:57:33,710 - INFO - Skipping article from None: https://www.snowflake.com/en/legal/
+2025-06-16 12:57:34,258 - INFO - Skipping article from None: https://x.com/Snowflake
+2025-06-16 12:57:38,687 - INFO - Skipping article from None: https://www.snowflake.com/blog/en/blog/ISO-IEC-42001-AI-certification/
+2025-06-16 12:57:38,687 - INFO - Skipping filtered URL: https://www.snowflake.com/en/solutions/industries/financial-services/
+2025-06-16 12:57:43,041 - ERROR - Error with requests for https://www.facebook.com/Snowflake-Computing-709171695819345/: 400 Client Error: Bad Request for url: https://www.facebook.com/Snowflake-Computing-709171695819345/
+2025-06-16 12:57:47,378 - INFO - Skipping article from None: https://www.snowflake.com/en/legal/
+2025-06-16 12:57:51,013 - INFO - Skipping article from None: https://www.snowflake.com/news-events/press-releases/guides/
+2025-06-16 12:57:56,464 - INFO - Skipping article from None: https://www.snowflake.com/en/company/overview/about-snowflake/
+2025-06-16 12:58:01,481 - INFO - Skipping article from None: https://www.snowflake.com/en/legal/snowflake-site-terms/
+2025-06-16 12:58:01,481 - INFO - Scraping announcements for Databricks
+2025-06-16 12:58:02,910 - ERROR - Error with requests for https://www.databricks.com/blog/trust: 404 Client Error: Not Found for url: https://www.databricks.com/blog/trust
+2025-06-16 12:58:02,910 - INFO - Skipping filtered URL: https://www.databricks.com/blog/blog/labels-loyalty-how-kard-using-databricks-ai-functions-power-personalized-rewards
+2025-06-16 12:58:03,590 - INFO - Skipping article from None: https://www.databricks.com/dataaisummit
+2025-06-16 12:58:04,340 - INFO - Skipping article from 2023-10-13 11:57:00: https://www.databricks.com/
+2025-06-16 12:58:05,141 - INFO - Skipping article from 2023-01-03 10:08:00: https://www.databricks.com/legal/privacynotice
+2025-06-16 12:58:05,952 - INFO - Skipping filtered URL: https://www.databricks.com/company/newsroom/company/newsroom/press-releases
+2025-06-16 12:58:06,660 - INFO - Skipping article from None: https://www.databricks.com/dataaisummit
+2025-06-16 12:58:07,526 - INFO - Skipping article from 2023-10-13 11:57:00: https://www.databricks.com/
+2025-06-16 12:58:08,025 - ERROR - Error with requests for https://www.databricks.com/company/newsroom/resources: 404 Client Error: Not Found for url: https://www.databricks.com/company/newsroom/resources
+2025-06-16 12:58:09,003 - INFO - Skipping article from 2023-01-03 10:08:00: https://www.databricks.com/legal/privacynotice
+2025-06-16 12:58:09,003 - INFO - Scraping announcements for Domo
+2025-06-16 12:58:09,453 - INFO - Skipping filtered URL: https://www.domo.com/blog/roles/sales
+2025-06-16 12:58:11,190 - ERROR - Error with requests for https://www.domo.com/blog/learn: 404 Client Error: Not Found for url: https://www.domo.com/blog/learn
+2025-06-16 12:58:11,191 - INFO - Skipping filtered URL: https://www.domo.com/blog/tags/data-never-sleeps
+2025-06-16 12:58:11,941 - ERROR - Error with requests for https://www.domoinvestors.com/overview/default.aspx: 403 Client Error: Forbidden for url: https://www.domoinvestors.com/overview/default.aspx
+2025-06-16 12:58:11,941 - INFO - Skipping filtered URL: https://www.domo.com/blog/tags/security-trust
+2025-06-16 12:58:12,960 - ERROR - Error with requests for https://www.domo.com/company/press-releases/company: 404 Client Error: Not Found for url: https://www.domo.com/company/press-releases/company
+2025-06-16 12:58:13,490 - ERROR - Error with requests for https://www.domo.com/company/press-releases/learn/report: 404 Client Error: Not Found for url: https://www.domo.com/company/press-releases/learn/report
+2025-06-16 12:58:14,141 - ERROR - Error with requests for https://www.domo.com/company/press-releases/jp/news/press: 404 Client Error: Not Found for url: https://www.domo.com/company/press-releases/jp/news/press
+2025-06-16 12:58:14,703 - INFO - Skipping article from None: https://www.domo.com/appstore/connector/mysql-connector/overview
+2025-06-16 12:58:14,703 - INFO - Scraping announcements for Tableau
+2025-06-16 12:58:37,941 - INFO - Skipping article from None: https://www.salesforce.com/company/legal/sfdc-website-terms-of-service/
+2025-06-16 12:58:46,642 - INFO - Skipping article from None: https://community.tableau.com/s/explore-forums
+2025-06-16 12:58:52,469 - INFO - Skipping article from None: https://www.tableau.com/blog/developer
+2025-06-16 12:58:57,354 - INFO - Skipping article from None: https://www.tableau.com/blog/data-culture
+2025-06-16 12:58:57,354 - INFO - Skipping filtered URL: https://www.tableau.com/blog/solutions/industries
+2025-06-16 12:59:08,620 - INFO - Skipping article from None: https://www.salesforce.com/company/legal/sfdc-website-terms-of-service/
+2025-06-16 12:59:09,241 - INFO - Skipping article from None: https://www.salesforce.com/hk/
+2025-06-16 12:59:10,120 - INFO - Skipping article from None: https://www.salesforce.com/mx/
+2025-06-16 12:59:10,746 - ERROR - Error processing article https://www.salesforce.com/news/stories/fy26-q1-highlights/: can't compare offset-naive and offset-aware datetimes
+2025-06-16 12:59:11,261 - INFO - Skipping article from None: https://x.com/SalesforceNews
+2025-06-16 12:59:11,261 - INFO - Scraping announcements for Power BI
+2025-06-16 12:59:20,423 - INFO - Skipping article from None: https://powerbi.microsoft.com/en-us/power-bi-pro/
+2025-06-16 12:59:23,920 - INFO - Skipping article from None: https://powerbi.microsoft.com/en-us/blog/en-us/what-is-power-bi/
+2025-06-16 12:59:26,151 - INFO - Skipping article from None: https://powerbi.microsoft.com/en-us/blog/en-us/blog/2019/10/
+2025-06-16 12:59:30,726 - INFO - Skipping article from None: https://powerbi.microsoft.com/en-us/blog/en-us/blog/2022/07/
+2025-06-16 12:59:33,215 - INFO - Skipping article from None: https://powerbi.microsoft.com/en-us/blog/en-us/blog/2018/07/
+2025-06-16 12:59:36,611 - INFO - Skipping article from None: https://www.microsoft.com/en-us/store/movies-and-tv?icid=TopNavMoviesTv
+2025-06-16 12:59:37,236 - INFO - Skipping article from None: https://www.microsoft.com/en-us/microsoft-365/onenote/digital-note-taking-app
+2025-06-16 12:59:37,873 - INFO - Skipping article from None: https://www.microsoft.com
+2025-06-16 12:59:40,928 - INFO - Skipping article from None: https://powerbi.microsoft.com/en-us/blog/pre-announcing-automatic-installation-of-the-power-bi-app-for-microsoft-teams/
+2025-06-16 12:59:41,649 - ERROR - Error with requests for https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnews.microsoft.com%2Ftag%2Fpower-bi: 400 Client Error: Bad Request for url: https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnews.microsoft.com%2Ftag%2Fpower-bi
+2025-06-16 12:59:41,653 - INFO - Scraping announcements for Starburst
+2025-06-16 12:59:42,405 - INFO - Skipping filtered URL: https://www.starburst.io/blog/blog/aws-glue-iceberg-s3/
+2025-06-16 12:59:42,405 - INFO - Skipping filtered URL: https://www.starburst.io/blog/blog/data-lakes-without-hadoop/
+2025-06-16 12:59:42,407 - INFO - Skipping filtered URL: https://www.starburst.io/blog/blog/starburst-stargate-one-cluster-to-rule-them-all/
+2025-06-16 12:59:45,226 - ERROR - Error with requests for https://www.starburst.io/blog/starburst-vs-trino/: 404 Client Error: Not Found for url: https://www.starburst.io/blog/starburst-vs-trino/
+2025-06-16 12:59:45,226 - INFO - Skipping filtered URL: https://www.starburst.io/blog/blog/apache-iceberg-schema-evolution-in-trino/
+2025-06-16 12:59:45,837 - ERROR - Error with requests for https://www.starburst.io/press-releases/: 404 Client Error: Not Found for url: https://www.starburst.io/press-releases/
+2025-06-16 12:59:45,841 - INFO - Scraping announcements for Denodo
+2025-06-16 12:59:46,498 - ERROR - Error with requests for https://www.denodo.com/en/blog: 404 Client Error: Not Found for url: https://www.denodo.com/en/blog
+2025-06-16 12:59:47,723 - ERROR - Error with requests for https://www.denodo.com/en/press-releases/en/about-us/awards: 404 Client Error: Not Found for url: https://www.denodo.com/en/press-releases/en/about-us/awards
+2025-06-16 12:59:47,723 - INFO - Skipping filtered URL: https://www.denodo.com/en/press-releases/en/solutions/by-industry/healthcare
+2025-06-16 12:59:47,723 - INFO - Skipping filtered URL: https://www.denodo.com/en/press-releases/en/solutions/by-capability/denodo-assistant
+2025-06-16 12:59:47,723 - INFO - Skipping filtered URL: https://www.denodo.com/en/press-releases/en/solutions/by-capability/ai-software-development-kit
+2025-06-16 12:59:47,731 - INFO - Skipping filtered URL: https://www.denodo.com/en/press-releases/en/solutions/by-industry/biotechnology-and-pharma
+2025-06-16 12:59:47,732 - INFO - Scraping announcements for ThoughtSpot
+2025-06-16 12:59:50,108 - ERROR - Error with requests for https://www.thoughtspot.com/blog/privacy: 404 Client Error: Not Found for url: https://www.thoughtspot.com/blog/privacy
+2025-06-16 12:59:51,481 - ERROR - Error with requests for https://www.thoughtspot.com/blog/resources#analyst_report: 404 Client Error: Not Found for url: https://www.thoughtspot.com/blog/resources#analyst_report
+2025-06-16 12:59:51,481 - INFO - Skipping filtered URL: https://www.thoughtspot.com/blog/solutions/retail-analytics
+2025-06-16 12:59:52,811 - ERROR - Error with requests for https://www.thoughtspot.com/blog/why-thoughtspot: 404 Client Error: Not Found for url: https://www.thoughtspot.com/blog/why-thoughtspot
+2025-06-16 12:59:54,151 - ERROR - Error with requests for https://www.thoughtspot.com/blog/legal: 404 Client Error: Not Found for url: https://www.thoughtspot.com/blog/legal
+2025-06-16 12:59:54,827 - ERROR - Error with requests for https://www.thoughtspot.com/company/press-releases: 404 Client Error: Not Found for url: https://www.thoughtspot.com/company/press-releases
+2025-06-16 12:59:54,831 - INFO - Found 0 announcements
+2025-06-16 12:59:54,831 - INFO - Market Intelligence Agent completed successfully
