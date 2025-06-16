@@ -12,6 +12,8 @@ from analyzer import AnnouncementAnalyzer
 from formatter import SummaryFormatter
 from monitoring import MetricsCollector, QualityChecker, ScrapingMetrics, SummaryMetrics
 import pandas as pd
+import os
+import shutil
 
 # Configure logging
 logging.basicConfig(
@@ -96,6 +98,45 @@ class AgentOrchestrator:
             return False
         return True
 
+    def _is_market_intelligence(self, announcement: dict) -> bool:
+        """Return True if the announcement is likely market intelligence, False if it's a legal/privacy/cookie/about/careers/etc page or pricing/plans/etc."""
+        if not isinstance(announcement, dict):
+            return False
+        title = (announcement.get('title') or '').lower()
+        url = (announcement.get('url') or '').lower()
+        # Expanded skip keywords
+        skip_keywords = [
+            'privacy', 'cookie', 'legal', 'terms', 'about', 'careers', 'jobs', 'esg', 'who we are', 'overview',
+            'policy', 'compliance', 'support', 'contact', 'faq', 'help', 'modern slavery', 'gdpr', 'accessibility',
+            'press kit', 'customer support', 'site terms', 'consent', 'copyright', 'disclaimer', 'investor relations',
+            'partners', 'leadership', 'team', 'board', 'governance', 'statement', 'giving-consent', 'sustainability',
+            'diversity', 'inclusion', 'trust', 'security', 'responsibility', 'ethics', 'transparency', 'csr', 'csr-report',
+            'community', 'donate', 'donation', 'foundation', 'philanthropy', 'volunteer', 'events', 'event', 'webinar',
+            'training', 'academy', 'university', 'learning', 'education', 'blog/authors', 'blog/category', 'blog/tags',
+            'blog/labels', 'blog/partners', 'blog/privacy', 'blog/legal', 'blog/about', 'blog/careers', 'blog/support',
+            'blog/overview', 'blog/press', 'blog/contact', 'blog/faq', 'blog/help', 'blog/giving-consent', 'blog/statement',
+            'blog/gdpr', 'blog/accessibility', 'blog/press-kit', 'blog/customer-support', 'blog/site-terms', 'blog/consent',
+            'blog/copyright', 'blog/disclaimer', 'blog/investor-relations', 'blog/leadership', 'blog/team', 'blog/board',
+            'blog/governance', 'blog/sustainability', 'blog/diversity', 'blog/inclusion', 'blog/trust', 'blog/security',
+            'blog/responsibility', 'blog/ethics', 'blog/transparency', 'blog/csr', 'blog/csr-report', 'blog/community',
+            'blog/donate', 'blog/donation', 'blog/foundation', 'blog/philanthropy', 'blog/volunteer', 'blog/events',
+            'blog/event', 'blog/webinar', 'blog/training', 'blog/academy', 'blog/university', 'blog/learning', 'blog/education',
+            # New skip keywords for pricing/plans/etc
+            'pricing', 'plans', 'plan', 'subscription', 'buy', 'purchase', 'quote', 'trial', 'demo', 'free', 'contact sales',
+            'get started', 'start now', 'request', 'register', 'signup', 'sign up', 'sign-up', 'login', 'log in', 'log-in',
+            'download', 'install', 'upgrade', 'renew', 'billing', 'invoice', 'order', 'cart', 'checkout', 'shop', 'store',
+            'marketplace', 'reseller', 'distributor', 'partner program', 'partner portal', 'affiliate', 'referral', 'pricing-table',
+            'compare plans', 'compare', 'cost', 'fee', 'payment', 'pay', 'money', 'refund', 'warranty', 'guarantee', 'discount',
+            'offer', 'promotion', 'promo', 'deal', 'coupon', 'special', 'limited time', 'exclusive', 'save', 'bargain', 'clearance',
+            'sale', 'bundle', 'package', 'starter', 'enterprise', 'business', 'personal', 'pro', 'premium', 'basic', 'plus', 'advanced',
+            'ultimate', 'essentials', 'trial', 'evaluation', 'demo', 'sandbox', 'beta', 'preview', 'early access', 'waitlist', 'invite',
+            'access', 'availability', 'release notes', 'roadmap', 'future', 'coming soon', 'soon', 'not available', 'unavailable', 'out of stock'
+        ]
+        for kw in skip_keywords:
+            if kw in title or kw in url:
+                return False
+        return True
+
     def process_company(self, company: str) -> List[Dict[str, Any]]:
         """Process announcements for a single company."""
         try:
@@ -117,6 +158,10 @@ class AgentOrchestrator:
                 try:
                     # Enhanced validation
                     if not self._validate_announcement(announcement):
+                        continue
+                    # Strict market intelligence filter
+                    if not self._is_market_intelligence(announcement):
+                        logger.info(f"Skipping non-market-intelligence announcement: {announcement.get('url', 'unknown URL')} | Title: {announcement.get('title', '')}")
                         continue
                     # Analyze announcement
                     analysis_result = self._execute_task(
@@ -224,4 +269,66 @@ class AgentOrchestrator:
             return {
                 'error': str(e),
                 'timestamp': datetime.now().isoformat()
-            } 
+            }
+
+    def run(self):
+        """Main entry point for the agent."""
+        # Delete all summaries at the start of each run
+        summaries_root = 'summaries'
+        if os.path.exists(summaries_root):
+            shutil.rmtree(summaries_root)
+        os.makedirs(summaries_root, exist_ok=True)
+        # Exclude ThoughtSpot from processing
+        for company in self.scraper.watchlist['companies']:
+            if company.strip().lower() == 'thoughtspot':
+                continue
+            self.process_company(company)
+        # After processing, keep only top 3 summaries per company
+        self._keep_top_summaries(max_per_company=3)
+
+    def _keep_top_summaries(self, max_per_company=3):
+        import glob
+        from dateutil.parser import parse
+        summaries_root = 'summaries'
+        if not os.path.exists(summaries_root):
+            return
+        for company in os.listdir(summaries_root):
+            company_dir = os.path.join(summaries_root, company)
+            if not os.path.isdir(company_dir):
+                continue
+            summary_files = glob.glob(os.path.join(company_dir, '*.md'))
+            summary_infos = []
+            for file in summary_files:
+                try:
+                    with open(file, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    confidence = 0.0
+                    date = None
+                    for line in content.splitlines():
+                        if 'confidence:' in line.lower():
+                            try:
+                                confidence = float(line.split(':')[-1].strip())
+                            except Exception:
+                                confidence = 0.0
+                        if line.lower().startswith('headline:') and '(' in line:
+                            try:
+                                date_str = line.split('(')[-1].split(')')[0].split(',')[-1].strip()
+                                date = parse(date_str, fuzzy=True)
+                            except Exception:
+                                date = None
+                    if not date:
+                        date = datetime.fromtimestamp(os.path.getmtime(file))
+                    summary_infos.append({
+                        'file': file,
+                        'confidence': confidence,
+                        'date': date
+                    })
+                except Exception:
+                    continue
+            summary_infos.sort(key=lambda x: (x['confidence'], x['date']), reverse=True)
+            to_keep = set(x['file'] for x in summary_infos[:max_per_company])
+            for info in summary_infos[max_per_company:]:
+                try:
+                    os.remove(info['file'])
+                except Exception:
+                    pass 

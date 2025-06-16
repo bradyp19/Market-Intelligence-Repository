@@ -1,0 +1,7 @@
+A Real-time Open Lakehouse with Redpanda and Databricks (, 2025-06-12)
+Source: https://www.databricks.com/blog/real-time-open-lakehouse-redpanda-and-databricks
+Summary: Our first principle was to maintain choice and meet users where they are. Redpanda already has mature multi-cloud SaaS , BYOC and self-managed offerings, private sovereign networking options like BYOVPC , and generally never forces its customers to move clouds, networks, object stores, IdPs, or anything else that would gate adoption or prevent platform owners from positioning their streaming platform deployment (including both data and control planes ), where it makes the most sense for them. Regardless of that choice, users get all features of the platform and a consistent UX for both devs and admins.
+Key Features:
+• . By contrast, high-value data in motion flowing through a streaming platform that powers real-time apps still needs to be ‘ETLed’ into the target lakehouse through a point-to-point, per-stream data integration job, or by running a costly connector infrastructure on its own cluster
+• . The ‘open lakehouse’ concept pioneered by Databricks years ago has been more broadly realized through the recent rise of Apache Iceberg™, driven by major vendors’ investments in framework integration, tooling, catalog support, and in data interoperability, committing to Iceberg as a common substrate for an open lakehouse
+Executive Insight: This announcement highlights new capabilities or strategic direction relevant to customers or the business.
