@@ -176,8 +176,7 @@ class MetricsCollector:
                     "SELECT company, AVG(confidence_score) as avg_confidence, COUNT(*) as total FROM summary_metrics GROUP BY company",
                     conn
                 )
-                
-                # Get coverage metrics
+                  # Get coverage metrics
                 coverage_df = pd.read_sql_query(
                     "SELECT company, AVG(successful_scrapes * 100.0 / total_articles) as scrape_coverage, "
                     "AVG(successful_summaries * 100.0 / total_articles) as summary_coverage "
@@ -188,14 +187,16 @@ class MetricsCollector:
                 return {
                     'scraping_metrics': scraping_df.to_dict('records'),
                     'summary_metrics': summary_df.to_dict('records'),
-                    'coverage_metrics': coverage_df.to_dict('records')
-                }
+                    'coverage_metrics': coverage_df.to_dict('records')                }
         except Exception as e:
             logger.error(f"Error generating metrics report: {str(e)}")
             return {}
 
     def get_low_confidence_summaries(self, threshold: float = 0.7) -> List[Dict[str, Any]]:
-        """Get summaries that need human review."""
+        """Get summaries that need human review, excluding only obvious non-market-intelligence content."""
+        import re
+        from config import IRRELEVANT_URL_PATTERNS
+        
         try:
             with sqlite3.connect(self.db_path) as conn:
                 cursor = conn.cursor()
@@ -206,15 +207,44 @@ class MetricsCollector:
                     ORDER BY timestamp DESC
                 ''', (threshold,))
                 
-                return [
-                    {
+                results = []
+                for row in cursor.fetchall():
+                    url = row[1]
+                    confidence_score = row[2]
+                      # Only skip URLs that are obviously irrelevant (privacy, legal, etc.)
+                    # Be more selective - only filter out the most obvious non-market-intelligence content
+                    highly_irrelevant_patterns = [
+                        r'/privacy',
+                        r'/legal/',
+                        r'/cookies',
+                        r'/terms',
+                        r'cookiepedia\.co\.uk',
+                        r'/modern-slavery-statement',
+                        r'salesforce\.com/company/privacy',
+                        r'/about$',
+                        r'/contact$',
+                        r'/careers$',
+                        r'/jobs$',
+                        r'/support/$'
+                    ]
+                    
+                    is_highly_irrelevant = any(re.search(pattern, url, re.IGNORECASE) for pattern in highly_irrelevant_patterns)                    # Keep borderline summaries for review (0.4-0.7 range)
+                    # Filter out very low confidence (< 0.4) and obvious irrelevant content
+                    if confidence_score < 0.4:
+                        continue
+                    
+                    # Skip if URL matches highly irrelevant patterns regardless of confidence
+                    if is_highly_irrelevant:
+                        continue
+                    
+                    results.append({
                         'company': row[0],
-                        'url': row[1],
-                        'confidence_score': row[2],
+                        'url': url,
+                        'confidence_score': confidence_score,
                         'timestamp': row[3]
-                    }
-                    for row in cursor.fetchall()
-                ]
+                    })
+                
+                return results
         except Exception as e:
             logger.error(f"Error getting low confidence summaries: {str(e)}")
             return []
@@ -222,12 +252,31 @@ class MetricsCollector:
 class QualityChecker:
     def __init__(self):
         """Initialize quality checker with thresholds."""
-        self.min_confidence = 0.6
+        self.min_confidence = 0.7  # Raised threshold to get more varied review candidates
         self.min_content_length = 100
         self.min_feature_count = 1
+        
+        # Product announcement keywords (strong indicators)
+        self.product_keywords = [
+            'announce', 'launch', 'release', 'introduce', 'unveil', 'preview',
+            'new feature', 'enhancement', 'capability', 'integration', 'update',
+            'available', 'generally available', 'public preview', 'beta'
+        ]
+        
+        # Market intelligence indicators
+        self.intelligence_keywords = [
+            'partnership', 'acquisition', 'funding', 'investment', 'expansion',
+            'customer', 'revenue', 'growth', 'market', 'competitive', 'strategy'
+        ]
+        
+        # Technical depth indicators
+        self.technical_keywords = [
+            'api', 'sdk', 'integration', 'architecture', 'performance', 'scalability',
+            'security', 'compliance', 'enterprise', 'cloud', 'ai', 'ml', 'data'
+        ]
 
     def check_summary_quality(self, summary: Any) -> Dict[str, Any]:
-        """Check quality of a summary with graceful error handling."""
+        """Check quality of a summary with comprehensive scoring."""
         try:
             # Validate input type
             if not isinstance(summary, dict):
@@ -238,40 +287,108 @@ class QualityChecker:
                     'reason': 'Invalid summary format',
                 }
             
-            # Initialize quality metrics
-            quality_score = 1.0
+            # Initialize scoring components
+            base_score = 0.5  # Start with neutral baseline
+            content_score = 0.0
+            relevance_score = 0.0
+            depth_score = 0.0
+            structure_score = 0.0
+            
             reasons = []
             
-            # Check content length
-            content = summary.get('content', '')
-            if not content or len(content) < self.min_content_length:
-                quality_score *= 0.7
-                reasons.append('Content too short or missing')
+            # 1. Content Quality Assessment (0-0.25 points)
+            content = summary.get('content', '').lower()
+            title = summary.get('title', '').lower()
+            combined_text = f"{title} {content}"
             
-            # Check features
+            if len(content) > 200:
+                content_score += 0.15
+            elif len(content) > 100:
+                content_score += 0.10
+            elif len(content) > 50:
+                content_score += 0.05
+            else:
+                reasons.append('Very short content')
+            
+            # Bonus for detailed content
+            if len(content) > 500:
+                content_score += 0.10
+                
+            # 2. Relevance Assessment (0-0.3 points)
+            product_mentions = sum(1 for keyword in self.product_keywords if keyword in combined_text)
+            intelligence_mentions = sum(1 for keyword in self.intelligence_keywords if keyword in combined_text)
+            
+            if product_mentions >= 3:
+                relevance_score += 0.20
+            elif product_mentions >= 2:
+                relevance_score += 0.15
+            elif product_mentions >= 1:
+                relevance_score += 0.10
+            else:
+                reasons.append('Low product announcement indicators')
+            
+            if intelligence_mentions >= 2:
+                relevance_score += 0.10
+            elif intelligence_mentions >= 1:
+                relevance_score += 0.05
+                
+            # 3. Technical Depth Assessment (0-0.15 points)
+            technical_mentions = sum(1 for keyword in self.technical_keywords if keyword in combined_text)
+            
+            if technical_mentions >= 4:
+                depth_score += 0.15
+            elif technical_mentions >= 2:
+                depth_score += 0.10
+            elif technical_mentions >= 1:
+                depth_score += 0.05
+                
+            # 4. Structure Quality Assessment (0-0.1 points)
             features = summary.get('features', [])
-            if not features or len(features) < self.min_feature_count:
-                quality_score *= 0.8
-                reasons.append('Insufficient features identified')
+            if len(features) >= 3:
+                structure_score += 0.10
+            elif len(features) >= 2:
+                structure_score += 0.07
+            elif len(features) >= 1:
+                structure_score += 0.05
+            else:
+                reasons.append('No specific features identified')
                 # Add default feature if none found
-                if not features:
-                    summary['features'] = ['No specific features identified']
+                summary['features'] = ['No specific features identified']
             
-            # Check social media section
+            # Calculate final confidence score
+            confidence_score = base_score + content_score + relevance_score + depth_score + structure_score
+            
+            # Apply penalties for obvious non-market-intelligence content
+            url = summary.get('url', '').lower()
+            if any(term in url for term in ['privacy', 'legal', 'about', 'contact', 'support']):
+                confidence_score *= 0.3
+                reasons.append('Non-market-intelligence URL pattern')
+            elif any(term in combined_text for term in ['privacy policy', 'terms of service', 'cookie policy']):
+                confidence_score *= 0.2
+                reasons.append('Non-market-intelligence content')
+            
+            # Ensure score is within bounds
+            confidence_score = max(0.0, min(1.0, confidence_score))
+              # Handle social media section
             social_metrics = summary.get('social_metrics', {})
             total_mentions = sum(social_metrics.get(platform, 0) for platform in ['twitter', 'reddit', 'linkedin'])
-            if total_mentions == 0:
-                # Remove social media section if no mentions
-                if 'social_metrics' in summary:
-                    del summary['social_metrics']
+            if total_mentions == 0 and 'social_metrics' in summary:
+                del summary['social_metrics']
             
             # Determine if review is needed
-            needs_review = quality_score < self.min_confidence
+            needs_review = confidence_score < self.min_confidence
             
             return {
-                'confidence_score': quality_score,
+                'confidence_score': confidence_score,
                 'needs_review': needs_review,
-                'reason': '; '.join(reasons) if reasons else None
+                'reason': '; '.join(reasons) if reasons else None,
+                'score_breakdown': {
+                    'base': base_score,
+                    'content': content_score,
+                    'relevance': relevance_score,
+                    'depth': depth_score,
+                    'structure': structure_score
+                }
             }
             
         except Exception as e:
@@ -280,4 +397,4 @@ class QualityChecker:
                 'confidence_score': 0.0,
                 'needs_review': True,
                 'reason': f'Error during quality check: {str(e)}'
-            } 
+            }

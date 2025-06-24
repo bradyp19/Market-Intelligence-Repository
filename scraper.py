@@ -14,9 +14,8 @@ from playwright.sync_api import sync_playwright
 from urllib.parse import urljoin, urlparse
 import re
 
-from config import (
-    COMPANY_SOURCES, PRODUCT_KEYWORDS, MAX_ARTICLES_PER_COMPANY,
-    JS_HEAVY_DOMAINS, URL_FILTER_PATTERNS, MIN_PUBLISH_DATE,
+from config import (    COMPANY_SOURCES, PRODUCT_KEYWORDS, MAX_ARTICLES_PER_COMPANY,
+    JS_HEAVY_DOMAINS, URL_FILTER_PATTERNS, IRRELEVANT_URL_PATTERNS, MIN_PUBLISH_DATE,
     LOG_DIR
 )
 
@@ -48,28 +47,23 @@ class AnnouncementScraper:
 
     def _is_valid_url(self, url: str) -> bool:
         """Check if URL is valid and not excluded."""
-        try:
-            # Check for excluded patterns
-            excluded_patterns = [
-                r'/blog/blog/',
-                r'/company/newsroom/company/newsroom/',
-                r'/tags/',
-                r'/categories/',
-                r'/roles/',
-                r'\?Type_equal=',
-                r'\?utm_source=',
-                r'\?utm_medium=',
-                r'\?utm_campaign=',
-                r'/author/',
-                r'/page/',
-                r'/about/',
-                r'/contact/',
-                r'/demo/',
-                r'/pricing/',
-                r'/solutions/'
+        try:            # Check for general excluded patterns
+            if any(re.search(pattern, url) for pattern in URL_FILTER_PATTERNS):
+                return False
+            
+            # Only filter out the most obviously irrelevant patterns during scraping
+            # Keep borderline content for quality scoring later
+            highly_irrelevant_patterns = [
+                r'/privacy',
+                r'/legal/',
+                r'/cookies',
+                r'/terms',
+                r'cookiepedia\.co\.uk',
+                r'/modern-slavery-statement',
+                r'salesforce\.com/company/privacy'
             ]
             
-            if any(re.search(pattern, url) for pattern in excluded_patterns):
+            if any(re.search(pattern, url, re.IGNORECASE) for pattern in highly_irrelevant_patterns):
                 return False
             
             # Check for excluded keywords

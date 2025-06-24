@@ -81,5 +81,45 @@ URL_FILTER_PATTERNS = [
     r'/solutions/'
 ]
 
+# URL patterns that should never be flagged for review (obviously non-market-intelligence content)
+IRRELEVANT_URL_PATTERNS = [
+    r'/privacy',
+    r'/legal/',
+    r'/cookies',
+    r'/terms',
+    r'/about',
+    r'/contact',
+    r'/careers',
+    r'/jobs',
+    r'/support/',
+    r'/help/',
+    r'/docs/',
+    r'/documentation',
+    r'/partners',
+    r'/company/overview',
+    r'/company/who-we-are',
+    r'/company/our-company',
+    r'/company/leadership',
+    r'/company/management',
+    r'/investor',
+    r'/sustainability',
+    r'/esg/',
+    r'/community/',
+    r'/forums/',
+    r'/trial',
+    r'/download',
+    r'/signup',
+    r'/login',
+    r'cookiepedia\.co\.uk',
+    r'linkedin\.com/company/',
+    r'twitter\.com/',
+    r'salesforce\.com/company/privacy',
+    r'/modern-slavery-statement',
+    r'/overview$',
+    r'/subscriptions$',
+    r'/new-features$',
+    r'/whats-new$'
+]
+
 # Minimum publish date (January 1, 2025)
-MIN_PUBLISH_DATE = datetime(2025, 1, 1) 
+MIN_PUBLISH_DATE = datetime(2025, 1, 1)
