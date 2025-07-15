@@ -1005,7 +1005,11 @@ class AnnouncementScraper:
                 '.post-date',
                 '.article-date',
                 '[class*="date"]',
-                '[class*="published"]'
+                '[class*="published"]',
+                '.blog-meta',           # Common blog metadata areas
+                '.post-meta',           # Post metadata
+                '.article-meta',        # Article metadata
+                '.entry-meta'           # Entry metadata
             ]
             
             for selector in date_selectors:
@@ -1024,11 +1028,16 @@ class AnnouncementScraper:
                     if text and len(text) > 6:  # Minimum date length
                         try:
                             from dateutil import parser
-                            parsed_date = parser.parse(text, fuzzy=True)
+                            # Handle common blog date formats like "JUL 15, 2025 | 4 MIN READ"
+                            # Extract just the date part before any pipe or extra content
+                            date_text = text.split('|')[0].strip()
+                            date_text = text.split('•')[0].strip()  # Handle bullet separators too
+                            
+                            parsed_date = parser.parse(date_text, fuzzy=True)
                             # Only accept dates that seem reasonable (not too far in future)
                             if parsed_date.year >= 2020 and parsed_date.year <= 2030:
                                 return parsed_date.replace(tzinfo=None)
-                        except:
+                        except Exception:
                             continue
             
             # Try meta tags
@@ -1056,8 +1065,10 @@ class AnnouncementScraper:
     def _is_within_date_range(self, article_date: Optional[datetime]) -> bool:
         """Check if article date is within the specified range (July 4-15, 2025)."""
         if not article_date:
-            # If no date is available, reject the article
-            return False
+            # If no date is available, keep the article (assume it's recent)
+            # This prevents missing important announcements due to date extraction failures
+            logger.info("No date found - keeping article (assuming recent)")
+            return True
         
         # Ensure article_date is timezone-naive for comparison
         if article_date.tzinfo is not None:
