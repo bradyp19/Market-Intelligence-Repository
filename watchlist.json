@@ -1,9 +1,9 @@
 {
     "companies": {
         "Snowflake": {
-            "blog_url": "https://www.snowflake.com/blog/",
+            "blog_url": "https://www.snowflake.com/en/blog/",
             "press_url": "https://www.snowflake.com/news-events/press-releases/",
-            "keywords": ["data cloud", "data warehouse", "data lake", "data sharing"]
+            "keywords": ["data cloud", "data warehouse", "data lake", "data sharing", "mcp servers", "data agents"]
         },
         "Databricks": {
             "blog_url": "https://www.databricks.com/blog",

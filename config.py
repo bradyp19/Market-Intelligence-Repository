@@ -121,5 +121,6 @@ IRRELEVANT_URL_PATTERNS = [
     r'/whats-new$'
 ]
 
-# Minimum publish date (July 4, 2025)
+# Date range filtering (July 4, 2025 to July 15, 2025)
 MIN_PUBLISH_DATE = datetime(2025, 7, 4)
+MAX_PUBLISH_DATE = datetime(2025, 7, 15, 23, 59, 59)  # End of July 15th
