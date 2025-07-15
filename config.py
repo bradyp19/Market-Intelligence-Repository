@@ -121,5 +121,5 @@ IRRELEVANT_URL_PATTERNS = [
     r'/whats-new$'
 ]
 
-# Minimum publish date (January 1, 2025)
-MIN_PUBLISH_DATE = datetime(2025, 1, 1)
+# Minimum publish date (July 4, 2025)
+MIN_PUBLISH_DATE = datetime(2025, 7, 4)
