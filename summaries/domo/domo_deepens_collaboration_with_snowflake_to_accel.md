@@ -1,4 +1,4 @@
-Domo Deepens Collaboration with Snowflake to Accelerate AI-Driven Analytics and Data Integration on the AI Data Cloud (, 2025-07-15)
+Domo Deepens Collaboration with Snowflake to Accelerate AI-Driven Analytics and Data Integration on the AI Data Cloud (, )
 Source: https://www.domo.com/news/press/domo-deepens-collaboration-with-snowflake-to-accelerate-ai-driven-analytics-and-data-integration-on-the-ai-data-cloud
 Summary: SILICON SLOPES, Utah — Domo (Nasdaq: DOMO), a leading AI and Data Products platform, today announced an expanded collaboration with Snowflake, the AI Data Cloud company, to deliver a comprehensive suite of applications on Snowflake Marketplace. This strengthened relationship enables joint customers to seamlessly integrate, transform, and analyze their data in a secure, scalable environment powered by advanced AI capabilities.
 

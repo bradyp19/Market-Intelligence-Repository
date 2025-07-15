@@ -1,4 +1,4 @@
-Power BI June 2025 Feature Summary (, 2025-07-15)
+Power BI June 2025 Feature Summary (, )
 Source: https://powerbi.microsoft.com/en-us/blog/power-bi-june-2025-feature-summary
 Summary: Welcome to the June 2025 update!
 

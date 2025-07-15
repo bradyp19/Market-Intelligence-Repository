@@ -1,4 +1,4 @@
-Accelerate innovation (, 2025-07-15)
+Accelerate innovation (, )
 Source: https://powerplatform.microsoft.com/
 Summary: MICROSOFT POWER PLATFORM Accelerate innovation Cut costs and development time with low-code tools. Take a guided tour AI-powered assistant Need help with Power Platform? Try the AI-powered assistant.
 Key Features:

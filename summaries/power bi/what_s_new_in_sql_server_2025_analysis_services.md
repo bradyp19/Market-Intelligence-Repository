@@ -1,4 +1,4 @@
-What’s New in SQL Server 2025 Analysis Services (, 2025-07-15)
+What’s New in SQL Server 2025 Analysis Services (, )
 Source: https://powerbi.microsoft.com/en-us/blog/whats-new-in-sql-server-2025-analysis-services
 Summary: The preview of SQL Server 2025 is now available at aka.ms/getsqlserver2025! This preview includes many exciting enhancements for SQL Server Analysis Services (SSAS).
 

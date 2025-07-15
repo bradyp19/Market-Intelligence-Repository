@@ -1,4 +1,4 @@
-Microsoft named a Leader in the 2025 Gartner® Magic Quadrant™ for Analytics and BI Platforms (, 2025-07-15)
+Microsoft named a Leader in the 2025 Gartner® Magic Quadrant™ for Analytics and BI Platforms (, )
 Source: https://powerbi.microsoft.com/en-us/blog/microsoft-named-a-leader-in-the-2025-gartner-magic-quadrant-for-analytics-and-bi-platforms
 Summary: For the eighteenth consecutive year, Microsoft has been positioned as a Leader in the 2025 Gartner Magic Quadrant for Analytics and Business Intelligence Platforms. * We’re thrilled that Microsoft has again been positioned furthest on Completeness of Vision and highest in the Ability to Execute in the Magic Quadrant, marking our seventh consecutive year in this position.
 Key Features:

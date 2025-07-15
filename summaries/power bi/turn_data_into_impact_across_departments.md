@@ -1,4 +1,4 @@
-Turn data into impact across departments (, 2025-07-15)
+Turn data into impact across departments (, )
 Source: https://powerbi.microsoft.com/en-us/power-bi-and-dynamics
 Summary: Turn data into impact across departments Inform decision making and dive deeper into your Dynamics 365 data with AI-driven visualizations from Power BI—embedded into your business applications. Try Power BI for free OVERVIEW Bring clarity to every department Sales Customer service Marketing Supply chain management Finance Human resources Previous Next Sales performance analysis Create a single source of truth for customer, territory, and product data and uncover powerful insights with intelligent, stunning visuals. Customer insights Get a single, 360-degree view of individual customers by building composite reports that connect data from multiple Dynamics 365 applications.
 Key Features:

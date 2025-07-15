@@ -22,9 +22,11 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Also disable all SSL-related warnings
 warnings.filterwarnings('ignore', message='Unverified HTTPS request')
 
-from config import (    COMPANY_SOURCES, PRODUCT_KEYWORDS, MAX_ARTICLES_PER_COMPANY,
-    JS_HEAVY_DOMAINS, URL_FILTER_PATTERNS, IRRELEVANT_URL_PATTERNS, MIN_PUBLISH_DATE, MAX_PUBLISH_DATE,
-    LOG_DIR
+from config import (
+    COMPANY_SOURCES, PRODUCT_KEYWORDS, MAX_ARTICLES_PER_COMPANY,
+    JS_HEAVY_DOMAINS, URL_FILTER_PATTERNS, IRRELEVANT_URL_PATTERNS, 
+    MIN_PUBLISH_DATE, MAX_PUBLISH_DATE, MIN_CONFIDENCE_THRESHOLD, 
+    LOG_DIR, REQUIRE_PUBLICATION_DATE
 )
 
 # Pre-compile regex patterns for performance
@@ -33,21 +35,23 @@ SOCIAL_MEDIA_DOMAINS = {
     'instagram.com', 'tiktok.com', 'youtube.com', 'reddit.com'
 }
 
-HIGHLY_IRRELEVANT_PATTERNS = [
-    re.compile(pattern, re.IGNORECASE) for pattern in [
-        r'/privacy', r'/legal/', r'/cookies', r'/terms',
-        r'cookiepedia\.co\.uk', r'/modern-slavery-statement',
-        r'salesforce\.com/company/privacy',
-        r'/careers', r'/jobs', r'/company/.*linkedin',
-        r'/profile/', r'/people/', r'/in/'
-    ]
+# Pre-compile regex patterns for performance from config
+COMPILED_IRRELEVANT_PATTERNS = [
+    re.compile(pattern, re.IGNORECASE) for pattern in IRRELEVANT_URL_PATTERNS
 ]
 
-CONTENT_PAGE_FILTERS = {
-    '/tag/', '/category/', '/author/', '/search/', '/page/', 
-    'privacy', 'legal', 'terms', 'cookies', '/profile/', '/people/', '/company/',
-    '/tags', '/categories', '/authors', '/archive', '/archives'  # Added more filters
-}
+# Constants for common strings
+HTML_PARSER = 'html.parser'
+AVAILABLE_NOW = 'available now'
+MACHINE_LEARNING = 'machine learning'
+
+# Year-based URL filter to skip obviously old content for performance
+OLD_YEAR_PATTERNS = [
+    re.compile(pattern) for pattern in [
+        r'/20[0-1][0-9]/',  # Matches /2000/ through /2019/
+        r'/202[0-4]/',      # Matches /2020/ through /2024/ (current is 2025)
+    ]
+]
 
 SOCIAL_PROFILE_FILTERS = {'/profile/', '/people/', '/company/', '/careers'}
 
@@ -104,7 +108,11 @@ class URLValidator:
                 return False
             
             # Check pre-compiled patterns (faster than checking raw patterns)
-            if any(pattern.search(url) for pattern in HIGHLY_IRRELEVANT_PATTERNS):
+            if any(pattern.search(url) for pattern in COMPILED_IRRELEVANT_PATTERNS):
+                return False
+                
+            # Skip URLs with old year patterns for performance
+            if any(pattern.search(url) for pattern in OLD_YEAR_PATTERNS):
                 return False
                 
             # Check navigation patterns (tag/category/admin pages)
@@ -329,7 +337,7 @@ class ContentExtractor:
     def extract_manually(self, content: str, url: str) -> Optional[Dict[str, str]]:
         """Extract content manually using BeautifulSoup with quality assessment."""
         try:
-            soup = BeautifulSoup(content, 'html.parser')
+            soup = BeautifulSoup(content, HTML_PARSER)
             
             # Remove unwanted elements
             for element in soup.select('script, style, nav, footer, header, aside, .sidebar, .navigation, .cookie, .privacy'):
@@ -497,7 +505,7 @@ class ContentExtractor:
         text_lower = text.lower()
         announcement_phrases = [
             'we are excited to announce', 'we are pleased to announce',
-            'today we are launching', 'introducing', 'available now',
+            'today we are launching', 'introducing', AVAILABLE_NOW,
             'we are thrilled to', 'proud to announce'
         ]
         
@@ -549,7 +557,7 @@ class AnnouncementClassifier:
             'release', 'releasing', 'unveil', 'unveiling', 'debut', 'debuting',
             'preview', 'public preview', 'beta', 'general availability', 'ga',
             'new feature', 'new product', 'new service', 'new capability',
-            'available now', 'now available',
+            AVAILABLE_NOW, 'now available',
             
             # Company-specific / Product launches
             'partnership', 'collaboration', 'integration',
@@ -561,7 +569,7 @@ class AnnouncementClassifier:
             # Global / Industry themes  
             'earnings', 'quarterly results', 'revenue', 'profit', 'growth',
             'funding', 'raise', 'ipo', 'valuation',
-            'ai', 'machine learning', 'generative ai', 'gpt-4', 'data cloud',
+            'ai', MACHINE_LEARNING, 'generative ai', 'gpt-4', 'data cloud',
             'sustainability', 'green', 'carbon footprint', 'net zero',
             
             # Communication & Education
@@ -713,7 +721,7 @@ class ConfidenceScorer:
         # Technical depth indicators
         technical_terms = [
             'api', 'integration', 'platform', 'architecture', 'framework',
-            'machine learning', 'artificial intelligence', 'cloud', 'data'
+            MACHINE_LEARNING, 'artificial intelligence', 'cloud', 'data'
         ]
         score += min(sum(2 for term in technical_terms if term in text_lower), 10)
         
@@ -733,7 +741,7 @@ class ConfidenceScorer:
         
         # Medium strength indicators
         medium_indicators = [
-            'available now', 'now available', 'general availability', 'public preview',
+            AVAILABLE_NOW, 'now available', 'general availability', 'public preview',
             'partnership', 'collaboration', 'acquisition', 'integration'
         ]
         score += min(sum(10 for indicator in medium_indicators if indicator in combined_text), 30)
@@ -784,7 +792,7 @@ class ConfidenceScorer:
         # Industry/domain relevance
         domain_terms = {
             'Snowflake': ['data warehouse', 'data lake', 'analytics', 'sql', 'cloud'],
-            'Databricks': ['spark', 'machine learning', 'lakehouse', 'delta', 'mlflow'],
+            'Databricks': ['spark', MACHINE_LEARNING, 'lakehouse', 'delta', 'mlflow'],
             'Tableau': ['visualization', 'dashboard', 'charts', 'analytics'],
             'Power BI': ['business intelligence', 'microsoft', 'analytics', 'reporting'],
             'Domo': ['business intelligence', 'dashboard', 'kpi', 'metrics']
@@ -894,10 +902,9 @@ class AnnouncementScraper:
         self.classifier = AnnouncementClassifier(self.watchlist)
         self.confidence_scorer = ConfidenceScorer(self.watchlist)
         
-        # Configuration for confidence-based filtering
-        self.min_confidence_threshold = 30.0  # Very forgiving threshold
-        self.max_articles_per_company = 5
-        self.scorer = ConfidenceScorer(self.watchlist)
+        # Configuration for confidence-based filtering (from config)
+        self.min_confidence_threshold = MIN_CONFIDENCE_THRESHOLD
+        self.max_articles_per_company = MAX_ARTICLES_PER_COMPANY
 
     def _load_watchlist(self, path: str) -> Dict[str, Any]:
         """Load watchlist configuration from JSON file."""
@@ -925,7 +932,6 @@ class AnnouncementScraper:
                         return False
             
             # Check for obvious old date patterns in URL path and query params
-            url_lower = url.lower()
             old_patterns = [
                 r'/2023/', r'/2022/', r'/2021/', r'/2020/', r'/2019/', r'/2018/',
                 r'/202[0-3]/', r'/201\d/',  # Broader patterns for 2010s-2023
@@ -952,7 +958,7 @@ class AnnouncementScraper:
     def _extract_links(self, content: str, base_url: str) -> List[str]:
         """Extract and validate links from page content."""
         try:
-            soup = BeautifulSoup(content, 'html.parser')
+            soup = BeautifulSoup(content, HTML_PARSER)
             links = []
             
             for a in soup.find_all('a', href=True):
@@ -988,13 +994,13 @@ class AnnouncementScraper:
         """Check if URL looks like a blog/news content page."""
         return (
             ('/blog/' in url or '/news/' in url or '/press-release' in url) and
-            not any(pattern in url.lower() for pattern in CONTENT_PAGE_FILTERS)
+            not any(pattern.search(url) for pattern in COMPILED_IRRELEVANT_PATTERNS)
         )
 
     def _extract_date_from_content(self, content: str, url: str) -> Optional[datetime]:
         """Try to extract publication date from page content."""
         try:
-            soup = BeautifulSoup(content, 'html.parser')
+            soup = BeautifulSoup(content, HTML_PARSER)
             
             # Common date selectors
             date_selectors = [
@@ -1020,7 +1026,7 @@ class AnnouncementScraper:
                         try:
                             from dateutil import parser
                             return parser.parse(element['datetime']).replace(tzinfo=None)
-                        except:
+                        except Exception:
                             continue
                     
                     # Try text content
@@ -1054,7 +1060,7 @@ class AnnouncementScraper:
                     try:
                         from dateutil import parser
                         return parser.parse(element['content']).replace(tzinfo=None)
-                    except:
+                    except Exception:
                         continue
                         
         except Exception as e:
@@ -1065,8 +1071,11 @@ class AnnouncementScraper:
     def _is_within_date_range(self, article_date: Optional[datetime]) -> bool:
         """Check if article date is within the specified range (July 4-15, 2025)."""
         if not article_date:
-            # If no date is available, keep the article (assume it's recent)
-            # This prevents missing important announcements due to date extraction failures
+            # If strict date filtering is enabled and no date is found, reject for performance
+            if REQUIRE_PUBLICATION_DATE:
+                logger.debug("Article rejected: no publication date found and strict filtering enabled")
+                return False
+            # Otherwise, accept articles without dates (legacy behavior)
             logger.info("No date found - keeping article (assuming recent)")
             return True
         
