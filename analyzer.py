@@ -40,14 +40,9 @@ class AnnouncementAnalyzer:
         ]
         self.default_feature = "No specific features identified"
         self.stop_words = set(stopwords.words('english'))
-        try:
-            from social_monitor import SocialMediaMonitor
-            self.social_monitor = SocialMediaMonitor()
-            self.social_enabled = True
-        except Exception as e:
-            logger.warning(f"Social monitoring disabled: {e}")
-            self.social_monitor = None
-            self.social_enabled = False
+        # Social monitoring disabled for this version
+        self.social_monitor = None
+        self.social_enabled = False
 
     def _extract_features(self, text: str) -> List[str]:
         """Extract features with fallback mechanisms."""

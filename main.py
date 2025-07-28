@@ -26,9 +26,34 @@ def save_report(report: dict, filename: str):
     except Exception as e:
         logger.error(f"Error saving report: {str(e)}")
 
+def clear_previous_outputs():
+    """Clear logs and reports directories for a clean run."""
+    try:
+        import shutil
+        
+        # Clear logs directory
+        if os.path.exists('logs'):
+            shutil.rmtree('logs')
+            logger.info("Cleared logs directory")
+        
+        # Clear reports directory
+        if os.path.exists('reports'):
+            shutil.rmtree('reports')
+            logger.info("Cleared reports directory")
+            
+        # Recreate directories
+        os.makedirs('logs', exist_ok=True)
+        os.makedirs('reports', exist_ok=True)
+        
+    except Exception as e:
+        logger.warning(f"Error clearing previous outputs: {str(e)}")
+
 def main():
     """Main entry point for the Market Intelligence Agent."""
     try:
+        # Clear previous outputs
+        clear_previous_outputs()
+        
         # Initialize orchestrator
         orchestrator = AgentOrchestrator()
         
@@ -63,4 +88,4 @@ def main():
         raise
 
 if __name__ == '__main__':
-    main() 
+    main()

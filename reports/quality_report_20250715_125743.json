@@ -1,0 +1,159 @@
+{
+  "metrics": {
+    "scraping_metrics": [
+      {
+        "company": "Databricks",
+        "status": "success",
+        "count": 8
+      },
+      {
+        "company": "Domo",
+        "status": "success",
+        "count": 3
+      },
+      {
+        "company": "Power BI",
+        "status": "success",
+        "count": 5
+      }
+    ],
+    "summary_metrics": [
+      {
+        "company": "Databricks",
+        "avg_confidence": 0.5,
+        "total": 8
+      },
+      {
+        "company": "Domo",
+        "avg_confidence": 0.5,
+        "total": 3
+      },
+      {
+        "company": "Power BI",
+        "avg_confidence": 0.5,
+        "total": 5
+      }
+    ],
+    "coverage_metrics": [
+      {
+        "company": "Databricks",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 80.0
+      },
+      {
+        "company": "Denodo",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 0.0
+      },
+      {
+        "company": "Domo",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 60.0
+      },
+      {
+        "company": "Power BI",
+        "scrape_coverage": 100.0,
+        "summary_coverage": 100.0
+      }
+    ]
+  },
+  "low_confidence_summaries": [
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/data-intelligence-action-100-data-and-ai-use-cases-databricks-customers",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:19:59.744556"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/how-data-intelligence-accelerating-itot-convergence",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:19:59.744556"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/summary-dais-2025-announcements-through-lens-games",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:19:59.744556"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/announcing-googles-gemma-3-databricks",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:19:59.744556"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/data-intelligence-action-100-data-and-ai-use-cases-databricks-customers",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/how-data-intelligence-accelerating-itot-convergence",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/summary-dais-2025-announcements-through-lens-games",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Databricks",
+      "url": "https://www.databricks.com/blog/announcing-googles-gemma-3-databricks",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news/press/domo-named-a-leader-in-the-2025-nucleus-research-analytics-technology-value-matrix",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/industries/financial-services",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Domo",
+      "url": "https://www.domo.com/news/press/domo-deepens-collaboration-with-snowflake-to-accelerate-ai-driven-analytics-and-data-integration-on-the-ai-data-cloud",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/power-bi-june-2025-feature-summary",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/microsoft-named-a-leader-in-the-2025-gartner-magic-quadrant-for-analytics-and-bi-platforms",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerplatform.microsoft.com/",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/blog/whats-new-in-sql-server-2025-analysis-services",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    },
+    {
+      "company": "Power BI",
+      "url": "https://powerbi.microsoft.com/en-us/power-bi-and-dynamics",
+      "confidence_score": 0.5,
+      "timestamp": "2025-07-15 12:00:44.173796"
+    }
+  ],
+  "timestamp": "2025-07-15T12:57:43.548864"
+}
