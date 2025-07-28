@@ -1,0 +1,9 @@
+{
+  "error": "'str' object does not support the context manager protocol",
+  "timestamp": "2025-07-21T10:52:40.208622",
+  "date_range": {
+    "from_date": "2025-07-16T00:00:00",
+    "to_date": "2025-07-21T00:00:00",
+    "total_days": 6
+  }
+}

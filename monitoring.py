@@ -252,7 +252,7 @@ class MetricsCollector:
 class QualityChecker:
     def __init__(self):
         """Initialize quality checker with thresholds."""
-        self.min_confidence = 0.7  # Raised threshold to get more varied review candidates
+        self.min_confidence = 0.5  # More realistic threshold for varied scoring
         self.min_content_length = 100
         self.min_feature_count = 1
         
@@ -288,7 +288,7 @@ class QualityChecker:
                 }
             
             # Initialize scoring components
-            base_score = 0.5  # Start with neutral baseline
+            base_score = 0.3  # Lower baseline to allow more variation
             content_score = 0.0
             relevance_score = 0.0
             depth_score = 0.0
@@ -296,46 +296,54 @@ class QualityChecker:
             
             reasons = []
             
-            # 1. Content Quality Assessment (0-0.25 points)
+            # 1. Content Quality Assessment (0-0.4 points)
             content = summary.get('content', '').lower()
             title = summary.get('title', '').lower()
             combined_text = f"{title} {content}"
             
-            if len(content) > 200:
-                content_score += 0.15
+            if len(content) > 1000:
+                content_score += 0.40
+            elif len(content) > 500:
+                content_score += 0.30
+            elif len(content) > 200:
+                content_score += 0.20
             elif len(content) > 100:
-                content_score += 0.10
+                content_score += 0.15
             elif len(content) > 50:
-                content_score += 0.05
+                content_score += 0.10
             else:
+                content_score += 0.05
                 reasons.append('Very short content')
             
-            # Bonus for detailed content
-            if len(content) > 500:
-                content_score += 0.10
-                
-            # 2. Relevance Assessment (0-0.3 points)
+            # 2. Relevance Assessment (0-0.4 points)
             product_mentions = sum(1 for keyword in self.product_keywords if keyword in combined_text)
             intelligence_mentions = sum(1 for keyword in self.intelligence_keywords if keyword in combined_text)
             
-            if product_mentions >= 3:
-                relevance_score += 0.20
+            if product_mentions >= 5:
+                relevance_score += 0.30
+            elif product_mentions >= 3:
+                relevance_score += 0.25
             elif product_mentions >= 2:
-                relevance_score += 0.15
+                relevance_score += 0.20
             elif product_mentions >= 1:
-                relevance_score += 0.10
+                relevance_score += 0.15
             else:
+                relevance_score += 0.05
                 reasons.append('Low product announcement indicators')
             
-            if intelligence_mentions >= 2:
+            if intelligence_mentions >= 3:
                 relevance_score += 0.10
+            elif intelligence_mentions >= 2:
+                relevance_score += 0.08
             elif intelligence_mentions >= 1:
                 relevance_score += 0.05
                 
-            # 3. Technical Depth Assessment (0-0.15 points)
+            # 3. Technical Depth Assessment (0-0.2 points)
             technical_mentions = sum(1 for keyword in self.technical_keywords if keyword in combined_text)
             
-            if technical_mentions >= 4:
+            if technical_mentions >= 6:
+                depth_score += 0.20
+            elif technical_mentions >= 4:
                 depth_score += 0.15
             elif technical_mentions >= 2:
                 depth_score += 0.10
@@ -344,12 +352,14 @@ class QualityChecker:
                 
             # 4. Structure Quality Assessment (0-0.1 points)
             features = summary.get('features', [])
-            if len(features) >= 3:
+            if len(features) >= 5:
                 structure_score += 0.10
+            elif len(features) >= 3:
+                structure_score += 0.08
             elif len(features) >= 2:
-                structure_score += 0.07
+                structure_score += 0.06
             elif len(features) >= 1:
-                structure_score += 0.05
+                structure_score += 0.04
             else:
                 reasons.append('No specific features identified')
                 # Add default feature if none found

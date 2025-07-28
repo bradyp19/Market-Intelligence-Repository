@@ -168,8 +168,10 @@ class AnnouncementScraper:
             article.download()
             article.parse()
             
-            # Keep the 2025 date filter
-            if article.publish_date and article.publish_date < datetime(2025, 1, 1):
+            # Only filter content from more than 1 week ago when scraping for recent content
+            from datetime import timedelta
+            one_week_ago = datetime.now() - timedelta(days=7)
+            if article.publish_date and article.publish_date < one_week_ago:
                 return None
             
             return {
