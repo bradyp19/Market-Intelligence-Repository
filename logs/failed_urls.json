@@ -1,0 +1,77 @@
+[
+  {
+    "url": "https://www.snowflake.com/news-events/press-releases/",
+    "error": "Unexpected: RetryError[<Future at 0x28047826290 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:02:00.549326"
+  },
+  {
+    "url": "https://community.databricks.com/s",
+    "error": "Redirected to homepage/root: https://community.databricks.com/",
+    "timestamp": "2025-08-05T17:02:55.682768"
+  },
+  {
+    "url": "https://www.glassdoor.com/Overview/Working-at-Databricks-EI_IE954734.11,21.htm",
+    "error": "Unexpected: RetryError[<Future at 0x28047e2bf90 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:03:40.974042"
+  },
+  {
+    "url": "https://www.wsj.com/articles/databricks-to-buy-startup-neon-for-1-billion-fdded971",
+    "error": "Unexpected: RetryError[<Future at 0x28047810910 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:04:12.267717"
+  },
+  {
+    "url": "https://www.fastcompany.com/91349979/databricks-one-dashboard-ai-business-leaders",
+    "error": "Unexpected: RetryError[<Future at 0x2804a3a29d0 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:04:37.486414"
+  },
+  {
+    "url": "https://www.domoinvestors.com/",
+    "error": "Unexpected: RetryError[<Future at 0x28047826750 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:05:45.148917"
+  },
+  {
+    "url": "https://www.tableau.com/blog",
+    "error": "Unexpected: RetryError[<Future at 0x2804a4ba250 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:07:12.795170"
+  },
+  {
+    "url": "https://www.tableau.com/about/press-releases",
+    "error": "Unexpected: RetryError[<Future at 0x2804a181c90 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:07:20.988921"
+  },
+  {
+    "url": "javascript:///void(0)",
+    "error": "Unexpected: No connection adapters were found for 'javascript:///void(0)'",
+    "timestamp": "2025-08-05T17:09:47.478654"
+  },
+  {
+    "url": "https://news.microsoft.com/tag/power-bi/",
+    "error": "Unexpected: RetryError[<Future at 0x2804a4ea750 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:10:08.751992"
+  },
+  {
+    "url": "https://www.g2.com/products/starburst/reviews",
+    "error": "Unexpected: RetryError[<Future at 0x28048f218d0 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:10:41.941535"
+  },
+  {
+    "url": "https://www.trinoforum.org/",
+    "error": "Unexpected: RetryError[<Future at 0x2804a4e34d0 state=finished raised ConnectTimeout>]",
+    "timestamp": "2025-08-05T17:21:53.615153"
+  },
+  {
+    "url": "https://www.starburst.io/press-releases/",
+    "error": "Unexpected: RetryError[<Future at 0x28047e2b490 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:27:24.873695"
+  },
+  {
+    "url": "https://www.denodo.com/en/blog",
+    "error": "Unexpected: RetryError[<Future at 0x2804b4ef650 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:27:33.354275"
+  },
+  {
+    "url": "https://www.thoughtspot.com/company/press-releases",
+    "error": "Unexpected: RetryError[<Future at 0x28048eec490 state=finished raised HTTPError>]",
+    "timestamp": "2025-08-05T17:29:13.803192"
+  }
+]

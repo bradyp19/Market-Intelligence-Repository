@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Intelligence Dashboard</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        .container { max-width: 1200px; margin: auto; }
+        .section { margin-bottom: 2em; }
+        h1, h2 { color: #333; }
+        .article { border: 1px solid #ccc; padding: 1em; margin-bottom: 1em; border-radius: 5px; }
+        .article h3 { margin-top: 0; }
+        .article a { text-decoration: none; color: #0066cc; }
+        .article .meta { font-size: 0.9em; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Market Intelligence Dashboard</h1>
+        <a href="{{ url_for('run_scraper_route') }}">Run Scraper</a>
+
+        <div class="section">
+            <h2>New Intelligence (For Triage)</h2>
+            {% for article in new_articles %}
+                <div class="article">
+                    <h3><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h3>
+                    <p class="meta">
+                        <strong>Company:</strong> {{ article.company }} | 
+                        <strong>Confidence:</strong> {{ "%.1f"|format(article.confidence_score) }}
+                        {% if article.publication_date %}
+                        | <strong>Published:</strong> {{ article.publication_date.strftime('%B %d, %Y') }}
+                        {% endif %}
+                    </p>
+                    <p>{{ article.text[:500] }}...</p>
+                </div>
+            {% else %}
+                <p>No new intelligence items.</p>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h2>Reviewed Items</h2>
+            {% for article in reviewed_articles %}
+                <div class="article">
+                    <h3><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h3>
+                    <p class="meta">
+                        <strong>Company:</strong> {{ article.company }} | 
+                        <strong>Confidence:</strong> {{ "%.1f"|format(article.confidence_score) }}
+                        {% if article.publication_date %}
+                        | <strong>Published:</strong> {{ article.publication_date.strftime('%B %d, %Y') }}
+                        {% endif %}
+                    </p>
+                    <p><strong>PM Notes:</strong> {{ article.pm_notes }}</p>
+                </div>
+            {% else %}
+                <p>No reviewed items.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

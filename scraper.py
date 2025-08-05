@@ -1091,13 +1091,7 @@ class AnnouncementScraper:
             # Try newspaper3k first
             result = self.extractor.extract_from_newspaper(url)
             assessment = None
-            
-<<<<<<< HEAD
-            # Only filter content from more than 1 week ago when scraping for recent content
-            from datetime import timedelta
-            one_week_ago = datetime.now() - timedelta(days=7)
-            if article.publish_date and article.publish_date < one_week_ago:
-=======
+
             # If that fails, try manual extraction
             if not result:
                 content = self.fetcher.fetch(url)
@@ -1116,7 +1110,6 @@ class AnnouncementScraper:
                             assessment = self.extractor.last_assessment
             
             if not result or not result.get('text'):
->>>>>>> 4fdf9d238dc622416e58be3ff14fd97246104fed
                 return None
             
             # Create article object with proper date handling
