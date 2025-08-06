@@ -3,59 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Intelligence Dashboard</title>
+    <title>Competitive Intelligence Dashboard</title>
     <style>
-        body { font-family: sans-serif; margin: 2em; }
-        .container { max-width: 1200px; margin: auto; }
-        .section { margin-bottom: 2em; }
-        h1, h2 { color: #333; }
-        .article { border: 1px solid #ccc; padding: 1em; margin-bottom: 1em; border-radius: 5px; }
+        body { font-family: sans-serif; margin: 2em; background-color: #f5f5f5; }
+        .container { max-width: 1400px; margin: auto; }
+        .header { background: white; padding: 1.5em; border-radius: 8px; margin-bottom: 2em; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .stats { display: flex; gap: 2em; margin-bottom: 1em; }
+        .stat-card { background: #e3f2fd; padding: 1em; border-radius: 6px; text-align: center; min-width: 120px; }
+        .stat-card.urgent { background: #ffebee; }
+        .stat-number { font-size: 1.8em; font-weight: bold; color: #1976d2; }
+        .stat-card.urgent .stat-number { color: #d32f2f; }
+        
+        .section { background: white; margin-bottom: 2em; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .section-header { background: #1976d2; color: white; padding: 1em; border-radius: 8px 8px 0 0; }
+        .section-content { padding: 1em; }
+        
+        h1, h2 { color: #333; margin: 0; }
+        .article { border: 1px solid #ddd; padding: 1em; margin-bottom: 1em; border-radius: 6px; background: #fafafa; }
+        .article.high-confidence { border-left: 4px solid #ff9800; background: #fff3e0; }
+        .article.medium-confidence { border-left: 4px solid #2196f3; }
+        .article.low-confidence { border-left: 4px solid #9e9e9e; }
+        
         .article h3 { margin-top: 0; }
-        .article a { text-decoration: none; color: #0066cc; }
-        .article .meta { font-size: 0.9em; color: #666; }
+        .article a { text-decoration: none; color: #1976d2; }
+        .article a:hover { text-decoration: underline; }
+        
+        .meta { font-size: 0.9em; color: #666; margin: 0.5em 0; }
+        .confidence-score { font-weight: bold; }
+        .confidence-high { color: #ff9800; }
+        .confidence-medium { color: #2196f3; }
+        .confidence-low { color: #9e9e9e; }
+        
+        .triage-actions { margin-top: 1em; }
+        .btn { padding: 0.4em 0.8em; margin-right: 0.5em; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85em; }
+        .btn-approve { background: #4caf50; color: white; }
+        .btn-reject { background: #f44336; color: white; }
+        .btn-archive { background: #9e9e9e; color: white; }
+        .btn-category { background: #2196f3; color: white; margin-top: 0.5em; }
+        
+        .category-tag { background: #e1f5fe; color: #01579b; padding: 0.2em 0.6em; border-radius: 12px; font-size: 0.8em; }
+        .priority-high { background: #ffebee; color: #c62828; }
+        .priority-medium { background: #e8f5e8; color: #2e7d32; }
+        .priority-low { background: #f3e5f5; color: #7b1fa2; }
+        
+        .run-scraper { background: #4caf50; color: white; padding: 0.8em 1.5em; text-decoration: none; border-radius: 4px; margin-bottom: 1em; display: inline-block; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Market Intelligence Dashboard</h1>
-        <a href="{{ url_for('run_scraper_route') }}">Run Scraper</a>
-
-        <div class="section">
-            <h2>New Intelligence (For Triage)</h2>
-            {% for article in new_articles %}
-                <div class="article">
-                    <h3><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h3>
-                    <p class="meta">
-                        <strong>Company:</strong> {{ article.company }} | 
-                        <strong>Confidence:</strong> {{ "%.1f"|format(article.confidence_score) }}
-                        {% if article.publication_date %}
-                        | <strong>Published:</strong> {{ article.publication_date.strftime('%B %d, %Y') }}
-                        {% endif %}
-                    </p>
-                    <p>{{ article.text[:500] }}...</p>
+        <div class="header">
+            <h1>Competitive Intelligence Dashboard</h1>
+            <div class="stats">
+                <div class="stat-card{% if high_priority_count > 0 %} urgent{% endif %}">
+                    <div class="stat-number">{{ high_priority_count }}</div>
+                    <div>High Priority</div>
                 </div>
-            {% else %}
-                <p>No new intelligence items.</p>
-            {% endfor %}
+                <div class="stat-card">
+                    <div class="stat-number">{{ pending_articles|length }}</div>
+                    <div>Pending Review</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">{{ approved_articles|length }}</div>
+                    <div>Approved Intel</div>
+                </div>
+            </div>
+            <a href="{{ url_for('run_scraper_route') }}" class="run-scraper">🔄 Run Intelligence Sweep</a>
         </div>
 
         <div class="section">
-            <h2>Reviewed Items</h2>
-            {% for article in reviewed_articles %}
-                <div class="article">
-                    <h3><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h3>
-                    <p class="meta">
-                        <strong>Company:</strong> {{ article.company }} | 
-                        <strong>Confidence:</strong> {{ "%.1f"|format(article.confidence_score) }}
-                        {% if article.publication_date %}
-                        | <strong>Published:</strong> {{ article.publication_date.strftime('%B %d, %Y') }}
+            <div class="section-header">
+                <h2>📋 Intelligence Triage (Pending Review)</h2>
+            </div>
+            <div class="section-content">
+                {% for article in pending_articles %}
+                    <div class="article {% if article.confidence_score >= 80 %}high-confidence{% elif article.confidence_score >= 60 %}medium-confidence{% else %}low-confidence{% endif %}">
+                        <h3><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h3>
+                        <p class="meta">
+                            <strong>Company:</strong> {{ article.company }} | 
+                            <span class="confidence-score {% if article.confidence_score >= 80 %}confidence-high{% elif article.confidence_score >= 60 %}confidence-medium{% else %}confidence-low{% endif %}">
+                                Confidence: {{ "%.1f"|format(article.confidence_score) }}
+                            </span>
+                            {% if article.publication_date %}
+                            | <strong>Published:</strong> {{ article.publication_date.strftime('%B %d, %Y') }}
+                            {% endif %}
+                        </p>
+                        <p>{{ article.text[:400] }}...</p>
+                        
+                        <div class="triage-actions">
+                            <a href="{{ url_for('triage_article', article_id=article.id, action='approve') }}" class="btn btn-approve">✅ Approve</a>
+                            <a href="{{ url_for('triage_article', article_id=article.id, action='reject') }}" class="btn btn-reject">❌ Reject</a>
+                            <a href="{{ url_for('triage_article', article_id=article.id, action='archive') }}" class="btn btn-archive">📁 Archive</a>
+                            <br>
+                            <a href="{{ url_for('categorize_article', article_id=article.id, category='product_launch') }}" class="btn btn-category">🚀 Product Launch</a>
+                            <a href="{{ url_for('categorize_article', article_id=article.id, category='partnership') }}" class="btn btn-category">🤝 Partnership</a>
+                            <a href="{{ url_for('categorize_article', article_id=article.id, category='strategy') }}" class="btn btn-category">📈 Strategy</a>
+                            <a href="{{ url_for('categorize_article', article_id=article.id, category='acquisition') }}" class="btn btn-category">🏢 Acquisition</a>
+                            <br>
+                            <a href="{{ url_for('set_priority', article_id=article.id, priority='high') }}" class="btn btn-category priority-high">🔥 High Priority</a>
+                            <a href="{{ url_for('set_priority', article_id=article.id, priority='medium') }}" class="btn btn-category priority-medium">📊 Medium Priority</a>
+                            <a href="{{ url_for('set_priority', article_id=article.id, priority='low') }}" class="btn btn-category priority-low">📝 Low Priority</a>
+                            <br>
+                            <a href="{{ url_for('add_notes', article_id=article.id) }}" class="btn btn-category">📋 Add Strategic Notes</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>No intelligence items pending review. Run the scraper to gather new competitive intelligence.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2>🎯 Approved Strategic Intelligence</h2>
+            </div>
+            <div class="section-content">
+                {% for article in approved_articles %}
+                    <div class="article">
+                        <h3><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h3>
+                        <p class="meta">
+                            <strong>Company:</strong> {{ article.company }} | 
+                            <strong>Confidence:</strong> {{ "%.1f"|format(article.confidence_score) }}
+                            {% if article.publication_date %}
+                            | <strong>Published:</strong> {{ article.publication_date.strftime('%B %d, %Y') }}
+                            {% endif %}
+                            {% if article.relevance_category %}
+                            | <span class="category-tag">{{ article.relevance_category.replace('_', ' ').title() }}</span>
+                            {% endif %}
+                            {% if article.strategic_priority %}
+                            | <span class="category-tag priority-{{ article.strategic_priority }}">{{ article.strategic_priority.title() }} Priority</span>
+                            {% endif %}
+                        </p>
+                        {% if article.pm_notes %}
+                        <p><strong>Strategic Notes:</strong> {{ article.pm_notes }}</p>
                         {% endif %}
-                    </p>
-                    <p><strong>PM Notes:</strong> {{ article.pm_notes }}</p>
-                </div>
-            {% else %}
-                <p>No reviewed items.</p>
-            {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No approved intelligence items yet. Triage pending items above to build your strategic intelligence database.</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </body>
