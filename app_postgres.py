@@ -17,51 +17,27 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # App initialization
-app = Flask(__name__, 
-           template_folder='../templates',  # Look for templates in parent directory
-           static_folder='../static')       # Look for static files in parent directory
+app = Flask(__name__)
 
-# Database configuration - support both SQLite and PostgreSQL
-USE_SQLITE = os.getenv('USE_SQLITE', 'false').lower() == 'true'
+# PostgreSQL configuration
+DB_HOST = os.getenv('DB_HOST', 'localhost')
+DB_PORT = os.getenv('DB_PORT', '5432')
+DB_NAME = os.getenv('DB_NAME', 'competitive_intelligence')
+DB_USER = os.getenv('DB_USER', 'postgres')
+DB_PASSWORD = os.getenv('DB_PASSWORD', 'postgres')
 
-if USE_SQLITE:
-    # SQLite configuration for local development
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///competitive_intelligence.db'
-    print("🔧 Using SQLite for local development")
-else:
-    # PostgreSQL configuration for production
-    DB_HOST = os.getenv('DB_HOST', 'localhost')
-    DB_PORT = os.getenv('DB_PORT', '5432')
-    DB_NAME = os.getenv('DB_NAME', 'competitive_intelligence')
-    DB_USER = os.getenv('DB_USER', 'postgres')
-    DB_PASSWORD = os.getenv('DB_PASSWORD', 'postgres')
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
-    print("🐘 Using PostgreSQL for production")
-
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-key-change-in-production')
 
 # Database initialization
 db = SQLAlchemy(app)
 
-# Define database-specific types for compatibility
-if USE_SQLITE:
-    # SQLite doesn't have native UUID or ARRAY types
-    from sqlalchemy import String as UUID_Type
-    ARRAY_Type = db.Text  # Store arrays as JSON strings in SQLite
-else:
-    # PostgreSQL has native UUID and ARRAY types
-    from sqlalchemy.dialects.postgresql import UUID as UUID_Type, ARRAY as ARRAY_Type
-
 # Models based on PostgreSQL schema
 class User(db.Model):
     __tablename__ = 'users'
     
-    if USE_SQLITE:
-        id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    else:
-        id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     email = db.Column(db.String(255), unique=True, nullable=False)
     name = db.Column(db.String(255), nullable=False)
     role = db.Column(db.String(50), nullable=False)
@@ -81,13 +57,7 @@ class Competitor(db.Model):
 class RawFetchQueue(db.Model):
     __tablename__ = 'raw_fetch_queue'
     
-    if USE_SQLITE:
-        id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-        processed_by = db.Column(db.String(36), db.ForeignKey('users.id'))
-    else:
-        id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-        processed_by = db.Column(UUID(as_uuid=True), db.ForeignKey('users.id'))
-    
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     competitor_id = db.Column(db.Integer, db.ForeignKey('competitors.id'), nullable=False)
     url = db.Column(db.String(1000), unique=True, nullable=False)
     title = db.Column(db.String(500))
@@ -98,8 +68,9 @@ class RawFetchQueue(db.Model):
     fetched_at = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone.utc))
     status = db.Column(db.String(20), default='pending')
     processed_at = db.Column(db.DateTime(timezone=True))
+    processed_by = db.Column(UUID(as_uuid=True), db.ForeignKey('users.id'))
     rejection_reason = db.Column(db.Text)
-    meta_data = db.Column(db.JSON, default={})
+    metadata = db.Column(db.JSON, default={})
     
     # Relationships
     competitor = db.relationship('Competitor', backref='raw_fetches')
@@ -108,18 +79,9 @@ class RawFetchQueue(db.Model):
 class CompetitorUpdate(db.Model):
     __tablename__ = 'competitor_updates'
     
-    if USE_SQLITE:
-        id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-        raw_fetch_id = db.Column(db.String(36), db.ForeignKey('raw_fetch_queue.id'), nullable=False)
-        approved_by = db.Column(db.String(36), db.ForeignKey('users.id'), nullable=False)
-        tags = db.Column(db.Text, default='[]')  # Store as JSON string
-    else:
-        id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-        raw_fetch_id = db.Column(UUID(as_uuid=True), db.ForeignKey('raw_fetch_queue.id'), nullable=False)
-        approved_by = db.Column(UUID(as_uuid=True), db.ForeignKey('users.id'), nullable=False)
-        tags = db.Column(ARRAY(db.String), default=[])
-    
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     competitor_id = db.Column(db.Integer, db.ForeignKey('competitors.id'), nullable=False)
+    raw_fetch_id = db.Column(UUID(as_uuid=True), db.ForeignKey('raw_fetch_queue.id'), nullable=False)
     title = db.Column(db.String(500), nullable=False)
     summary = db.Column(db.Text)
     url = db.Column(db.String(1000), nullable=False)
@@ -127,9 +89,11 @@ class CompetitorUpdate(db.Model):
     relevance_category = db.Column(db.String(50))
     strategic_priority = db.Column(db.String(10), default='medium')
     confidence_score = db.Column(db.Numeric(5, 2), nullable=False)
+    approved_by = db.Column(UUID(as_uuid=True), db.ForeignKey('users.id'), nullable=False)
     approved_at = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone.utc))
     pm_notes = db.Column(db.Text)
     ai_summary = db.Column(db.Text)
+    tags = db.Column(ARRAY(db.String), default=[])
     is_archived = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone.utc))
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(timezone.utc))
@@ -138,54 +102,6 @@ class CompetitorUpdate(db.Model):
     competitor = db.relationship('Competitor', backref='updates')
     raw_fetch = db.relationship('RawFetchQueue', backref='approved_updates')
     approver = db.relationship('User', backref='approved_updates')
-
-# Database initialization function
-def init_db():
-    """Initialize the database with tables and sample data."""
-    db.create_all()
-    
-    # Check if we already have data
-    if User.query.count() > 0:
-        print("Database already initialized")
-        return
-    
-    # Create sample users
-    pm_user = User(
-        email='pm@company.com',
-        name='Product Manager',
-        role='product_manager'
-    )
-    analyst_user = User(
-        email='analyst@company.com',
-        name='Business Analyst',
-        role='analyst'
-    )
-    
-    # Create sample competitors
-    snowflake = Competitor(
-        name='Snowflake',
-        domain='snowflake.com',
-        is_active=True
-    )
-    databricks = Competitor(
-        name='Databricks',
-        domain='databricks.com',
-        is_active=True
-    )
-    
-    # Add to session
-    db.session.add_all([pm_user, analyst_user, snowflake, databricks])
-    
-    try:
-        db.session.commit()
-        print("✅ Database initialized with sample data")
-    except Exception as e:
-        db.session.rollback()
-        print(f"❌ Error initializing database: {e}")
-
-# Initialize database when app starts
-with app.app_context():
-    init_db()
 
 # Routes
 @app.route('/')
@@ -219,7 +135,7 @@ def index():
     pending_items = pending_query.all()
     approved_items = approved_query.all()
     
-    return render_template('index.html', 
+    return render_template('dashboard.html', 
                          pending_items=pending_items,
                          approved_items=approved_items,
                          high_priority_count=high_priority_count)
@@ -229,31 +145,36 @@ def run_scraper_route():
     """Run the scraper and add new items to the queue."""
     try:
         # Import scraper here to avoid circular imports
-        # from scraper import AnnouncementScraper  # TODO: Fix import path
+        from scraper import AnnouncementScraper
         
-        # scraper = AnnouncementScraper()
+        scraper = AnnouncementScraper()
         new_items_count = 0
         
         # Get all active competitors
         competitors = Competitor.query.filter_by(is_active=True).all()
         
-        # TODO: Implement scraper integration
-        # For now, just create a test item
-        if competitors:
-            test_item = RawFetchQueue(
-                competitor_id=competitors[0].id,
-                url='https://example.com/test',
-                title='Test Article',
-                content='This is a test article for development',
-                confidence_score=75.0,
-                published_date=datetime.now(timezone.utc),
-                meta_data={'source': 'test'}
-            )
-            db.session.add(test_item)
-            new_items_count = 1
+        for competitor in competitors:
+            # This is a simplified version - you'd integrate with your existing scraper
+            company_data = scraper.scrape_company(competitor.name.lower())
+            
+            for article_data in company_data:
+                # Check for duplicates
+                existing = RawFetchQueue.query.filter_by(url=article_data['url']).first()
+                if not existing:
+                    new_item = RawFetchQueue(
+                        competitor_id=competitor.id,
+                        url=article_data['url'],
+                        title=article_data['title'],
+                        content=article_data['text'],
+                        confidence_score=article_data.get('confidence_score', 50.0),
+                        published_date=article_data.get('date'),
+                        metadata={'source': 'web_scraper'}
+                    )
+                    db.session.add(new_item)
+                    new_items_count += 1
         
         db.session.commit()
-        flash(f'Successfully added {new_items_count} test item(s) to the queue', 'success')
+        flash(f'Successfully added {new_items_count} new items to the queue', 'success')
         
     except Exception as e:
         db.session.rollback()

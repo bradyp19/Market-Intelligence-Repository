@@ -42,7 +42,7 @@ PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -U $DB_USER -d postgres -c "SELECT 1 FR
 
 # Apply schema
 echo "📝 Applying database schema..."
-PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -U $DB_USER -d $DB_NAME -f sql/schema.sql
+PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -U $DB_USER -d $DB_NAME -f schema.sql
 
 # Verify tables were created
 echo "🔍 Verifying table creation..."
@@ -62,4 +62,4 @@ echo "🎉 Database initialization complete!"
 echo "💡 Next steps:"
 echo "   1. Set up your .env file with the database credentials"
 echo "   2. Install Python dependencies: pip install -r requirements.txt"
-echo "   3. Run the Flask app: python src/app_postgres.py"
+echo "   3. Run the Flask app: python app_postgres.py"

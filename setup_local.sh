@@ -59,13 +59,11 @@ except Exception as e:
 
 # Initialize database if needed
 echo "🗄️  Initializing database..."
-python3 sql/setup_postgres.py
+python3 setup_postgres.py
 
 # Run basic app test
 echo "🧪 Testing Flask app initialization..."
 python3 -c "
-import sys
-sys.path.append('src')
 from app_postgres import app, db
 with app.app_context():
     print('✅ Flask app initialized successfully')
@@ -77,9 +75,9 @@ echo "🎉 Local setup complete!"
 echo ""
 echo "📋 To start the development server:"
 echo "   source venv/bin/activate"
-echo "   python src/app_postgres.py"
+echo "   python app_postgres.py"
 echo ""
 echo "🌐 The app will be available at http://localhost:5000"
 echo ""
 echo "🔍 To run in production mode:"
-echo "   gunicorn --bind 0.0.0.0:8000 --workers 4 --pythonpath src app_postgres:app"
+echo "   gunicorn --bind 0.0.0.0:8000 --workers 4 app_postgres:app"
