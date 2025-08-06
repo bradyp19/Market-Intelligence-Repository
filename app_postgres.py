@@ -70,7 +70,7 @@ class RawFetchQueue(db.Model):
     processed_at = db.Column(db.DateTime(timezone=True))
     processed_by = db.Column(UUID(as_uuid=True), db.ForeignKey('users.id'))
     rejection_reason = db.Column(db.Text)
-    metadata = db.Column(db.JSON, default={})
+    meta_info = db.Column(db.JSON, default={})
     
     # Relationships
     competitor = db.relationship('Competitor', backref='raw_fetches')
@@ -168,7 +168,7 @@ def run_scraper_route():
                         content=article_data['text'],
                         confidence_score=article_data.get('confidence_score', 50.0),
                         published_date=article_data.get('date'),
-                        metadata={'source': 'web_scraper'}
+                        meta_info={'source': 'web_scraper'}
                     )
                     db.session.add(new_item)
                     new_items_count += 1

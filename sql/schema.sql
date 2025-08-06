@@ -39,7 +39,7 @@ CREATE TABLE raw_fetch_queue (
     processed_at TIMESTAMP WITH TIME ZONE,
     processed_by UUID REFERENCES users(id),
     rejection_reason TEXT,
-    metadata JSONB DEFAULT '{}'::jsonb
+    meta_info JSONB DEFAULT '{}'::jsonb
 );
 
 -- Approved competitive intelligence updates

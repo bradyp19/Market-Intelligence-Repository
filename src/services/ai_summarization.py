@@ -183,9 +183,9 @@ def integrate_ai_summarization():
                 item.strategic_priority = ai_result['strategic_priority']
                 item.confidence_score = ai_result['confidence_score']
                 
-                # Store additional insights in metadata
-                item.metadata = {
-                    **item.metadata,
+                # Store additional insights in meta_info
+                item.meta_info = {
+                    **item.meta_info,
                     'ai_insights': ai_result['key_insights'],
                     'ai_tags': ai_result['tags'],
                     'ai_processed_at': datetime.utcnow().isoformat()
