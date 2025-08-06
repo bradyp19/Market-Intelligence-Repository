@@ -4,6 +4,10 @@
 
 A Python-based tool that automatically collects, analyzes, and summarizes product announcements from major tech and data companies.
 
+08062025: [[DEPRECATED]]
+
+I removed any PII and forwarded this to my company's AI and SWE team for production deployment.
+
 ## Features
 
 - Scrapes product announcements and press releases from company websites
